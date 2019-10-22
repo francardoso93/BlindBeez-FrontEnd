@@ -1,8 +1,19 @@
-<div>
-  <header id="header">
+<header id="header">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
     <div class="container">
-      <div class="row">
-        <div class="col-xs-8 col-sm-1 col-md-2">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-brand">
           <button
             (click)="goHome()"
             title="Logotipo da blindbeez"
@@ -14,31 +25,28 @@
               src="./assets/img/logo-blind-small-removebg.png"
               alt='Logotipo de escudo hexagonal com tipografia estilizada escrito "Blind Beez"'
               class="img-responsive"
+              id="logo-button"
             />
           </button>
         </div>
-        <div class="col-xs-4 col-sm-11 col-md-10 relative">
-          <div class="icon_menu_mobile pull-right hidden-md hidden-lg">
-            <a
-              href="#"
-              title=""
-              aria-label="Abrir ou fechar o menu"
-              aria-expanded="false"
-            >
-              <i class="fa fa-bars" aria-hidden="true"></i>
-            </a>
-          </div>
-          <nav
-            class="menu_main relative hidden-sm hidden-xs pull-right"
-            tabindex="1"
-          >
-            <app-header-menu></app-header-menu>
-          </nav>
-        </div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <button (click)="goSchedule()" class="nav-link btn item">
+              AGENDAR HORÁRIO
+            </button>
+          </li>
+          <li class="nav-item" *ngIf="!UserCredentials">
+            <button (click)="goLogin()" class="nav-link btn item credentials">
+              LOGIN
+            </button>
+          </li>
+          <li class="nav-item" *ngIf="UserCredentials">
+            <button (click)="logout()" class="nav-link btn item">
+              Logout
+            </button>
+          </li>
+        </ul>
       </div>
-      <nav class="menu_mobile hidden-md hidden-lg uppercase" tabindex="1">
-        <app-header-menu></app-header-menu>
-      </nav>
     </div>
-  </header>
-</div>
+  </nav>
+</header>
