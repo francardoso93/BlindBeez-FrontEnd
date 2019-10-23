@@ -1,15 +1,15 @@
 ul li {
   list-style: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .section {
-    padding: 7% 0;
-    display: block;
-  }
+  padding: 7% 0;
+  display: block;
+}
 
- .pull-right {
-    float: right!important;
+.pull-right {
+  float: right !important;
 }
 
 /* ------------------------------------------------------------------------------ */
@@ -38,52 +38,36 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: "Roboto", sans-serif;
+}
+h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
   font-family: 'Roboto', sans-serif;
+  vertical-align: baseline;
 }
-.font_12 {
-  font-size: 12px;
-}
-.font_14 {
-  font-size: 14px;
-}
-.font_16 {
-  font-size: 16px;
-}
-.font_18 {
-  font-size: 18px;
-}
-.font_20 {
-  font-size: 20px;
-}
-.font_24 {
-  font-size: 24px;
-}
-.font_30 {
-  font-size: 30px;
-}
-.font_36 {
-  font-size: 36px;
-}
-.font_48 {
-  font-size: 48px;
-}
-.underline {
-  text-decoration: underline !important;
-}
-.uppercase {
-  text-transform: uppercase;
-}
-.italic {
-  font-style: italic;
-}
-.bold {
-  font-weight: bold;
-}
+
 .title_page {
   color: #646464;
   font-size: 36px;
   text-transform: uppercase;
   margin-bottom: 20px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: "Roboto", sans-serif;
+  vertical-align: baseline;
+  color: #646464;
 }
 
 /* Outros */
