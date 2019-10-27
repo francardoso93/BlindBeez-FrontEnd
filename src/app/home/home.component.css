@@ -3,12 +3,15 @@
   display: block;
   width: 100%;
   height: auto;
+  margin-top: 35px;
 }
 .banner .banner-caption {
   top: 27%;
 }
 
-/* PARCEIROS */
+section {
+  padding-top: 40px;
+}
 
 #partners ul {
   display: -ms-flex;
@@ -28,7 +31,6 @@
   margin: 0 auto
 }
 
-/* MEDIA QUERIES */
 @media (max-width: 768px) {
   #partners ul {
     display: block;
