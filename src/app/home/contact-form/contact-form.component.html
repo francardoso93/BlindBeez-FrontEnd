@@ -1,105 +1,217 @@
-<div class="bg_red_polygon">
+<div class="contact-form">
   <div class="container">
     <section class="padding_t_40 padding_b_50">
-      <article class="container margin_b_50" aria-label="Contato">
+      <article class="container" aria-label="Contato">
         <div class="row">
           <div class="col-xs-12">
-            <h2 class="title_page sm_text_center cl_white">Contato</h2>
+            <h2 class="title_page">Contato</h2>
           </div>
         </div>
         <ng-container *ngIf="showmensagem">
           <div class="panel panel-success">
             <div class="panel-heading">
-              <h2 id="mensagem-heading" class="panel-title" tabindex="-1"><span class="glyphicon glyphicon-ok"
-                  aria-hidden="true"></span> Obrigado!</h2>
+              <h2 id="mensagem-heading" class="panel-title" tabindex="-1">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                Obrigado!
+              </h2>
             </div>
 
             <div class="panel-body">
-              <p>Sua mensagem foi enviada com sucesso! Em breve entraremos em contato.</p>
+              <p>
+                Sua mensagem foi enviada com sucesso! Em breve entraremos em
+                contato.
+              </p>
             </div>
           </div>
         </ng-container>
 
         <ng-container *ngIf="!showmensagem">
           <div class="panel-default">
-            <div class="panel-body">
-              <div id="error-bucket" class="error-notice panel panel-danger" *ngIf="!contactForm.valid && submitted">
+            <div id="error-bucket"
+            class="panel-body error-notice panel panel-danger"
+            *ngIf="!contactForm.valid && submitted">
                 <div class="panel-heading">
-                  <h3 id="error-heading" class="panel-title" tabindex="-1"><span
-                      class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Só um minutinho, encontramos
-                    alguns erros nas suas informações</h3>
+                  <h3 id="error-heading" class="panel-title" tabindex="-1">
+                    <span
+                      class="glyphicon glyphicon-warning-sign"
+                      aria-hidden="true"
+                    ></span>
+                    Só um minutinho, encontramos alguns erros nas suas
+                    informações
+                  </h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                   <ul id="error-list" class="error-list">
-                    <li *ngIf="contactForm.controls['name'].hasError('required')">
+                    <li
+                      *ngIf="contactForm.controls['name'].hasError('required')"
+                    >
                       <a href="#name">É obrigatório informar o seu nome.</a>
                     </li>
-                    <li *ngIf="contactForm.controls['email'].hasError('required')">
+                    <li
+                      *ngIf="contactForm.controls['email'].hasError('required')"
+                    >
                       <a href="#email">É obrigatório informar o seu email.</a>
                     </li>
-                    <li *ngIf="contactForm.controls['email'].hasError('pattern')">
+                    <li
+                      *ngIf="contactForm.controls['email'].hasError('pattern')"
+                    >
                       <a href="#email">Formato de email inválido.</a>
                     </li>
-                    <li *ngIf="contactForm.controls['name'].hasError('required')">
-                      <a href="#subject">É obrigatório informar o assunto desse contato.</a>
+                    <li
+                      *ngIf="contactForm.controls['name'].hasError('required')"
+                    >
+                      <a href="#subject"
+                        >É obrigatório informar o assunto desse contato.</a
+                      >
                     </li>
-                    <li *ngIf="contactForm.controls['message'].hasError('required')">
-                      <a href="#message">É obrigatório informar a sua mensagem.</a>
+                    <li
+                      *ngIf="
+                        contactForm.controls['message'].hasError('required')
+                      "
+                    >
+                      <a href="#message"
+                        >É obrigatório informar a sua mensagem.</a
+                      >
                     </li>
                   </ul>
-                </div>
+              </div>
+            </div>
+
+            <form
+              [formGroup]="contactForm"
+              (ngSubmit)="submitForm(contactForm.value)"
+            >
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error': !contactForm.controls['name'].valid && submitted
+                }"
+              >
+                <label for="name">
+                  <span class="visuallyhidden"
+                    >Seu Nome (Obrigatório para Contato)</span
+                  >
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    [formControl]="contactForm.controls['name']"
+                    placeholder="Seu Nome"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['name'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar o seu nome.
+                  </div>
+                </label>
               </div>
 
-              <form [formGroup]="contactForm" (ngSubmit)="submitForm(contactForm.value)">
-                <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['name'].valid && submitted}">
-                  <label for="name">
-                    <span class="visuallyhidden">Seu Nome (Obrigatório para Contato)</span> 
-                    <input id="name" class="form-control" type="text" [formControl]="contactForm.controls['name']"
-                      placeholder="Seu Nome">
-                    <div *ngIf="contactForm.controls['name'].hasError('required') && submitted"
-                      class="alert alert-danger">É obrigatório informar o seu nome.</div>
-                  </label>
-                </div>
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error': !contactForm.controls['email'].valid && submitted
+                }"
+              >
+                <label for="email">
+                  <span class="visuallyhidden"
+                    >Email (Obrigatório para Contato)</span
+                  >
+                  <input
+                    id="email"
+                    class="form-control"
+                    type="text"
+                    placeholder="Email"
+                    [formControl]="contactForm.controls['email']"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['email'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar o seu email.
+                  </div>
+                  <div
+                    *ngIf="
+                      contactForm.controls['email'].hasError('pattern') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    Formato de email inválido.
+                  </div>
+                </label>
+              </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['email'].valid && submitted}">
-                  <label for="email">
-                    
-                    <span class="visuallyhidden">Email (Obrigatório para Contato)</span> 
-                    <input id="email" class="form-control" type="text" placeholder="Email"
-                      [formControl]="contactForm.controls['email']">
-                    <div *ngIf="contactForm.controls['email'].hasError('required') && submitted"
-                      class="alert alert-danger">É obrigatório informar o seu email.</div>
-                    <div *ngIf="contactForm.controls['email'].hasError('pattern') && submitted"
-                      class="alert alert-danger">Formato de email inválido.</div>
-                  </label>
-                </div>
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !contactForm.controls['subject'].valid && submitted
+                }"
+              >
+                <label for="subject">
+                  <span class="visuallyhidden"
+                    >Assunto (Obrigatório para Contato)</span
+                  >
+                  <input
+                    id="subject"
+                    class="form-control"
+                    type="text"
+                    [formControl]="contactForm.controls['subject']"
+                    placeholder="Assunto"
+                  />
+                  <div
+                    *ngIf="
+                      contactForm.controls['subject'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar o assunto desse contato.
+                  </div>
+                </label>
+              </div>
 
-                <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['subject'].valid && submitted}">
-                  <label for="subject">
-                    
-                    <span class="visuallyhidden">Assunto (Obrigatório para Contato)</span> 
-                    <input id="subject" class="form-control" type="text" [formControl]="contactForm.controls['subject']"
-                      placeholder="Assunto">
-                    <div *ngIf="contactForm.controls['subject'].hasError('required') && submitted"
-                      class="alert alert-danger">É obrigatório informar o assunto desse contato.</div>
-                  </label>
-                </div>
-
-                <div class="form-group" [ngClass]="{'has-error':!contactForm.controls['message'].valid && submitted}">
-                  <label for="message">
-                    
-                    <span class="visuallyhidden">Mensagem (Obrigatório para Contato)</span> 
-                    <textarea id="message" class="form-control" placeholder="Mensagem"
-                      [formControl]="contactForm.controls['message']"></textarea>
-                    <div *ngIf="contactForm.controls['message'].hasError('required') && submitted"
-                      class="alert alert-danger">É obrigatório informar a sua mensagem.</div>
-                  </label>
-                </div>
-                <div class="form-group">
-                  <button type="submit" class="btn btn_blue medium">Enviar</button>
-                </div>
-              </form>
-            </div>
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !contactForm.controls['message'].valid && submitted
+                }"
+              >
+                <label for="message">
+                  <span class="visuallyhidden"
+                    >Mensagem (Obrigatório para Contato)</span
+                  >
+                  <textarea
+                    id="message"
+                    class="form-control"
+                    placeholder="Mensagem"
+                    [formControl]="contactForm.controls['message']"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      contactForm.controls['message'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar a sua mensagem.
+                  </div>
+                </label>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn_blue medium">
+                  Enviar
+                </button>
+              </div>
+            </form>
           </div>
         </ng-container>
       </article>
