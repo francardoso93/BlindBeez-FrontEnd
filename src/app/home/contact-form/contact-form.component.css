@@ -1,0 +1,6 @@
+.bg_red_polygon {
+  background-image: url("/assets/img/bg-red-polygons.jpg");
+  background-color: red;
+  background-position: top center;
+  background-size: cover;
+}

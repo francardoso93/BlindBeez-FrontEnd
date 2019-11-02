@@ -4,10 +4,12 @@ import { HomeComponent } from './home.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PartnersComponent } from './partners/partners.component';
+import { BannerComponent } from './banner/banner.component';
 
 
 @NgModule({
-  declarations: [HomeComponent, AboutUsComponent, ContactFormComponent],
+  declarations: [HomeComponent, AboutUsComponent, ContactFormComponent, PartnersComponent, BannerComponent],
   imports: [
     CommonModule,
     FormsModule,

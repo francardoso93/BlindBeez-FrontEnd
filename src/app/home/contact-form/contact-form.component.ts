@@ -1,36 +1,55 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-
-// import { Contact } from '../../models/contactmessages/contact.model';
-// import { Backendpoints } from '../../models/backendpoints/backendpoints.model';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
-  // styleUrls: ['./contact.component.css']
+  styleUrls: ['./contact-form.component.css']
 })
-export class ContactFormComponent {
-  items;
-  checkoutForm;
+export class ContactFormComponent implements OnInit {
+  contactForm: FormGroup;
+  showMessage: boolean;
+  submitted: boolean;
 
-  constructor(
-    // private cartService: CartService,
-    private formBuilder: FormBuilder,
-  ) {
-    // this.items = this.cartService.getItems();
+  constructor(public fb: FormBuilder) { }
 
-    this.checkoutForm = this.formBuilder.group({
-      name: '',
-      address: ''
+  ngOnInit() {
+    this.showMessage = false;
+    this.submitted = false;
+
+    this.contactForm = this.fb.group({
+      'name': [null, Validators.required],
+      'email': [null, Validators.compose([
+          Validators.required,
+          Validators.pattern(/\b\S+@\S+\b/g),
+        ])],
+      // 'phoneNumber': [null, Validators.compose([
+      //   Validators.required,
+      //   Validators.pattern(/\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/g),
+      //   Validators.minLength(7)
+      // ])],
+      'subject': [null, Validators.required],
+      'message': [null, Validators.required]
     });
   }
 
-  onSubmit(customerData) {
-    // Process checkout data here
-    console.warn('Your order has been submitted', customerData);
+  submitForm(value: any) {
+    console.log(value);
 
-    // this.items = this.cartService.clearCart();
-    this.checkoutForm.reset();
+    this.submitted = true;
+
+    if (this.contactForm.valid) {
+      this.showMessage = true;
+      //TODO: Submit real do formulario JSON
+      setTimeout(() => {
+        const messageHeading = <HTMLElement>document.querySelector('#message-heading');
+        messageHeading.focus();
+      }, 100);
+    } else {
+      setTimeout(() => {
+        const errorHeading = <HTMLElement>document.querySelector('#error-heading');
+        errorHeading.focus();
+      }, 100);
+    }
   }
 }
