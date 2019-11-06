@@ -10,7 +10,7 @@ https://www.instagram.com/blindbeez
 
 Trata-se de frontend desenvolvido em angular com foco em acessibilidade (para leitores de tela).
 
-Esse portal tem o objetivo inicial de ser inicialmente um sistema de agendamentos de massagem para os usuários atuais da Blind e uma página institucional. 
+Esse portal tem o objetivo inicial de ser um sistema de agendamentos de massagem para os usuários atuais da Blind e uma página institucional. 
 
 O grande sonho é tornar-se um hub das massagens, buscando proximidade entre alguém que gostaria de desestressar e um massoterapeuta cego em busca de um cliente. Além de capacitar pessoas com diferentes graus da deficiência visual para entrar nesse mercado.
 
