@@ -1,4 +1,4 @@
-# FrontEnd for BlindBeez
+# FrontEnd da BlindBeez
 ## Sobre a BlindBeez
 A Blind Beez é um grupo constituído por massoterapeutas cegos, ou de baixa visão, que prestam serviço para empresas, eventos e clientes particulares. Oferecem terapias alternativas de massagem com foco na Quick Massage.
 
