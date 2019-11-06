@@ -1,0 +1,42 @@
+.contact-form {
+  background-image: url("/assets/img/bg-red-polygons.jpg");
+  background-color: red;
+  background-position: top center;
+  background-size: cover;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.title_page {
+  color: #fff !important;
+  font-size: 36px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.btn.btn_blue {
+  background-color: #1056a6;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.btn.btn_blue:hover, .btn.btn_blue:focus {
+  background-color: #0c3e77;
+}
+
+.btn.medium {
+  width: 120px;
+}
+
+.panel-danger>.panel-heading {
+  background-repeat: repeat-x;
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.panel-body {
+  padding: 15px;
+  background-color: #fff;
+  margin-bottom: 30px;
+}

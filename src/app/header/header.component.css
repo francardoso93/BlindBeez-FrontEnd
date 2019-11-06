@@ -1,0 +1,32 @@
+@media (min-width: 769px) {
+  nav {
+    padding: 0;
+    height: 75px;
+  }
+}
+
+#header {
+  position: relative;
+  background-color: #f8f9fa;
+  padding: 0px;
+}
+
+#header .logo_main img {
+  max-width: 70;
+}
+
+#header .menu_main ul li button.item {
+  display: block;
+  text-transform: uppercase;
+  color: #646464;
+  background-color: #fff;
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+ul li button.item:hover,
+ul li button.item:focus {
+  color: #fff;
+  background-color: #eeae04;
+}

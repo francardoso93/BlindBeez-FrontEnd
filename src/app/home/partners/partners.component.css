@@ -1,0 +1,33 @@
+ul {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -ms-align-items: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  justify-content: space-around;
+}
+ul li img {
+  display: block;
+  max-width: 200px;
+  filter: grayscale(100%);
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  ul {
+    display: block;
+    text-align: center;
+  }
+  ul li {
+    display: block;
+    text-align: center;
+    margin: 0 auto 40px auto;
+  }
+  ul li img {
+    display: block;
+    margin-left: 40px ;
+  }
+}

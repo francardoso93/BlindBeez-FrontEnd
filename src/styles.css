@@ -1,0 +1,89 @@
+ul li {
+  list-style: none;
+  font-family: "Roboto", sans-serif;
+}
+
+.section {
+  padding: 7% 0;
+  display: block;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+/* ------------------------------------------------------------------------------ */
+/* TIPOGRAPHY */
+.align_left {
+  text-align: left;
+}
+.align_right {
+  text-align: right;
+}
+@media (min-width: 769px) {
+  .sm_align_left {
+    text-align: left;
+  }
+  .sm_align_right {
+    text-align: right;
+  }
+}
+@media (max-width: 768px) {
+  .sm_align_left,
+  .sm_align_right {
+    text-align: center;
+  }
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Roboto", sans-serif;
+}
+h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: 'Roboto', sans-serif;
+  vertical-align: baseline;
+}
+
+.title_page {
+  color: #646464;
+  font-size: 36px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: "Roboto", sans-serif;
+  vertical-align: baseline;
+  color: #646464;
+  line-height: 24px;
+  font-size: 16px;
+}
+
+/* Outros */
+label {
+  width: 100%;
+}
+
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute !important;
+}

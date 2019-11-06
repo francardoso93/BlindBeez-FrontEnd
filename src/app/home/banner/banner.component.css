@@ -1,0 +1,10 @@
+.banner .banner-inner picture,
+.banner .banner-inner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 35px;
+}
+.banner .banner-caption {
+  top: 27%;
+}
