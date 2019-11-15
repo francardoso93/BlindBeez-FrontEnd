@@ -7,7 +7,6 @@ import { HomeModule } from './home/home.module';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
-import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-schedule';
 
 @NgModule({
   imports: [
@@ -17,7 +16,6 @@ import { ScheduleModule, RecurrenceEditorModule } from '@syncfusion/ej2-angular-
     HeaderModule,
     FooterModule,
     SchedulerModule,
-    ScheduleModule, RecurrenceEditorModule
   ],
   declarations: [
     AppComponent,
