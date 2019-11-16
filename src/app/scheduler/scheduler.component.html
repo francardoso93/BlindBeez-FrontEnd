@@ -1,5 +1,193 @@
-<br>  <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>   
+<div class="contact-form">
+  <div class="container">
+    <section class="padding_t_40 padding_b_50">
+      <article class="container" aria-label="Contato">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="title_page">Agende sua quick Massage</h2>
+          </div>
+        </div>
+        <ng-container *ngIf="showmensagem">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h2 id="mensagem-heading" class="panel-title" tabindex="-1">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                Obrigado!
+              </h2>
+            </div>
 
-<p>
-  scheduler works!
-</p>
+            <div class="panel-body">
+              <p>
+                Sua agendamento foi realizado com sucesso!
+              </p>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="!showmensagem">
+          <div class="panel-default">
+            <div id="error-bucket"
+            class="panel-body error-notice panel panel-danger"
+            *ngIf="!clientScheduleForm.valid && submitted">
+                <div class="panel-heading">
+                  <h3 id="error-heading" class="panel-title" tabindex="-1">
+                    <span
+                      class="glyphicon glyphicon-warning-sign"
+                      aria-hidden="true"
+                    ></span>
+                    Só um minutinho, encontramos alguns erros nas suas
+                    informações
+                  </h3>
+                </div>
+                <div class="card-body">
+                  <ul id="error-list" class="error-list">
+                    <li
+                      *ngIf="clientScheduleForm.controls['name'].hasError('required')"
+                    >
+                      <a href="/agendamento#name">É obrigatório informar o seu nome.</a>
+                    </li>
+                    <li
+                      *ngIf="clientScheduleForm.controls['email'].hasError('required')"
+                    >
+                      <a href="/agendamento#email">É obrigatório informar o seu email.</a>
+                    </li>
+                    <li
+                      *ngIf="clientScheduleForm.controls['email'].hasError('pattern')"
+                    >
+                      <a href="/agendamento#email">Formato de email inválido.</a>
+                    </li>
+                    <li
+                      *ngIf="clientScheduleForm.controls['date'].hasError('required')"
+                    >
+                      <a href="/agendamento#date">É obrigatório informar a data.</a>
+                    </li>
+                    <li
+                      *ngIf="clientScheduleForm.controls['date'].hasError('pattern')"
+                    >
+                      <a href="/agendamento#date">Formato de data inválido (DD/MM/YYYY) ou data não existe.</a>
+                    </li>
+                  </ul>
+              </div>
+            </div>
+
+            <form
+              [formGroup]="clientScheduleForm"
+              (ngSubmit)="submitForm(clientScheduleForm.value)"
+            >
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error': !clientScheduleForm.controls['name'].valid && submitted
+                }"
+              >
+                <label for="name">
+                  <span class="visuallyhidden"
+                    >Seu Nome (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    [formControl]="clientScheduleForm.controls['name']"
+                    placeholder="Seu Nome"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['name'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar o seu nome.
+                  </div>
+                </label>
+              </div>
+
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error': !clientScheduleForm.controls['email'].valid && submitted
+                }"
+              >
+                <label for="email">
+                  <span class="visuallyhidden"
+                    >Email (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="email"
+                    class="form-control"
+                    type="text"
+                    placeholder="Email"
+                    [formControl]="clientScheduleForm.controls['email']"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar o seu email.
+                  </div>
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError('pattern') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    Formato de email inválido.
+                  </div>
+                </label>
+              </div>
+              
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error': !clientScheduleForm.controls['email'].valid && submitted
+                }"
+              >
+                <label for="date">
+                  <span class="visuallyhidden"
+                    >Data (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="date"
+                    class="form-control"
+                    type="text"
+                    placeholder="Data"
+                    [formControl]="clientScheduleForm.controls['date']"
+                    [textMask]="{mask: datemask}"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['date'].hasError('required') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    É obrigatório informar uma data.
+                  </div>
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['date'].hasError('pattern') &&
+                      submitted
+                    "
+                    class="alert alert-danger"
+                  >
+                    Formato de data inválido (DD/MM/YYYY) ou data não existe.
+                  </div>
+                </label>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn_blue medium">
+                  Confirmar
+                </button>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+      </article>
+    </section>
+  </div>
+</div>

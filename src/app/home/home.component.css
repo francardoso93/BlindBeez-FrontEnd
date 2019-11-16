@@ -1,3 +1,8 @@
 section {
   padding-top: 40px;
 }
+
+#banner{
+  padding-top: 0px;
+  margin-top: -15px;
+}
