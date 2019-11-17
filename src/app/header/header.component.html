@@ -1,41 +1,26 @@
 <header id="header">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light" >
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
     <div class="container">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <div class="navbar-brand">
-          <button
-            (click)="goHome()"
-            title="Logotipo da blindbeez"
-            aria-label="Acessar homepage da BlindBeez"
-            class="nav-link btn logo_main"
-            tabindex="0"
-          >
-            <img
-              src="./assets/img/logo-blind-small-removebg.png"
-              alt='Logotipo de escudo hexagonal com tipografia estilizada escrito "Blind Beez"'
-              class="img-responsive"
-              id="logo-button"
-            />
+          <button [routerLink]="['./']" title="Logotipo da blindbeez" aria-label="Acessar homepage da BlindBeez"
+            class="nav-link btn logo_main" tabindex="0">
+            <img src="./assets/img/logo-blind-small-removebg.png"
+              alt='Logotipo de escudo hexagonal com tipografia estilizada escrito "Blind Beez"' class="img-responsive"
+              id="logo-button" />
           </button>
         </div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <button (click)="goSchedule()" class="nav-link btn item">
+            <button [routerLink]="['./agendamento']" class="nav-link btn item">
               AGENDAR HORÁRIO
             </button>
           </li>
-          <li class="nav-item" *ngIf="!UserCredentials">
+          <!-- <li class="nav-item" *ngIf="!UserCredentials">
             <button (click)="goLogin()" class="nav-link btn item credentials">
               LOGIN
             </button>
@@ -44,7 +29,7 @@
             <button (click)="logout()" class="nav-link btn item">
               Logout
             </button>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div>
