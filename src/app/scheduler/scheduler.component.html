@@ -142,17 +142,6 @@
                 </label>
               </div>
 
-              <div class="form-group">
-                <label for="massotherapist">
-                  <span class="visuallyhidden">Massoterapeuta de Preferência (Opcional)</span>
-                  <select id="massotherapist" class="form-control"
-                    [formControl]="clientScheduleForm.controls['massotherapist']">
-                    <option *ngFor="let opt of therapists" [value]="opt.key">
-                      {{opt.value}}</option>
-                  </select>
-                </label>
-              </div>
-
               <div class="form-group" [ngClass]="{
                 'has-error': !clientScheduleForm.controls['time'].valid && submitted
               }">
