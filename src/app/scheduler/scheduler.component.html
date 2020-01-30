@@ -107,8 +107,8 @@
                 <label for="company">
                   <span class="visuallyhidden">Empresa (Obrigatório para Agendamento)</span>
                   <select id="company" class="form-control" [formControl]="clientScheduleForm.controls['company']">
-                    <option *ngFor="let opt of companies" [value]="opt.key" [ngClass]='opt.key == "" ? placeholder : naosei'>
-                      {{opt.value}}</option>
+                    <option *ngFor="let opt of companies" [value]="opt.id" [ngClass]='opt.id == "" ? placeholder : naosei'>
+                      {{opt.name}}</option>
                   </select>
                   <div *ngIf="
                       clientScheduleForm.controls['company'].hasError('required') &&

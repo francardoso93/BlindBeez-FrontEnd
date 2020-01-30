@@ -15,16 +15,16 @@ export class SchedulerComponent implements OnInit {
   // TODO: Receber esses dados de serviço
   companies = [
     {
-      key: '',
-      value: 'Empresa'
+      id: '',
+      name: 'Empresa'
     },
     {
-      key: 'Centauro',
-      value: 'Centauro'
+      id: 'Centauro',
+      name: 'Centauro'
     },
     {
-      key: 'E/OU MRM',
-      value: 'E/OU MRM'
+      id: 'E/OU MRM',
+      name: 'E/OU MRM'
     }];
 
   therapists = [
