@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { SchedulerService } from './scheduler.service';
+import { Company } from './company';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-scheduler',
@@ -13,19 +15,22 @@ export class SchedulerComponent implements OnInit {
   submitted: boolean;
 
   // TODO: Receber esses dados de serviço
-  companies = [
-    {
-      id: '',
-      name: 'Empresa'
-    },
-    {
-      id: 'Centauro',
-      name: 'Centauro'
-    },
-    {
-      id: 'E/OU MRM',
-      name: 'E/OU MRM'
-    }];
+  companies: Observable<Company[]>;
+
+    // companies: Company[] = [
+    //   {
+    //     id: 0,
+    //     name: 'Empresa'
+    //   },
+    //   {
+    //     id: 1,
+    //     name: 'Centauro'
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'E/OU MRM'
+    //   }];
+  
 
   therapists = [
     {
@@ -76,11 +81,16 @@ export class SchedulerComponent implements OnInit {
     /[0-9]/
   ];
 
-  constructor(public fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(public fb: FormBuilder, private schedulerService: SchedulerService) { }
+
+  getCompanies() {
+    this.companies = this.schedulerService.listAvailableCompanies();
+  }
 
   ngOnInit() {
     this.showMessage = false;
     this.submitted = false;
+    this.getCompanies();
 
     this.clientScheduleForm = this.fb.group({
       name: [null, Validators.required],
