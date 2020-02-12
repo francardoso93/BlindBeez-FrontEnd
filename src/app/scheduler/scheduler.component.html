@@ -26,135 +26,274 @@
 
         <ng-container *ngIf="!showMessage">
           <div class="panel-default">
-            <div id="error-bucket" class="panel-body error-notice panel panel-danger"
-              *ngIf="!clientScheduleForm.valid && submitted">
+            <div
+              id="error-bucket"
+              class="panel-body error-notice panel panel-danger"
+              *ngIf="!clientScheduleForm.valid && submitted"
+            >
               <div class="panel-heading">
                 <h3 id="error-heading" class="panel-title" tabindex="-1">
-                  <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
-                  Só um minutinho, encontramos alguns erros nas suas
-                  informações
+                  <span
+                    class="glyphicon glyphicon-warning-sign"
+                    aria-hidden="true"
+                  ></span>
+                  Só um minutinho, encontramos alguns erros nas suas informações
                 </h3>
               </div>
               <div class="card-body">
                 <ul id="error-list" class="error-list">
-                  <li *ngIf="clientScheduleForm.controls['name'].hasError('required')">
-                    <a href="/agendamento#name">É obrigatório informar o seu nome.</a>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['name'].hasError('required')
+                    "
+                  >
+                    <a href="/agendamento#name"
+                      >É obrigatório informar o seu nome.</a
+                    >
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['email'].hasError('required')">
-                    <a href="/agendamento#email">É obrigatório informar o seu email.</a>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError('required')
+                    "
+                  >
+                    <a href="/agendamento#email"
+                      >É obrigatório informar o seu email.</a
+                    >
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['company'].hasError('required')">
-                    <a href="/agendamento#company">É obrigatório informar a sua empresa.</a>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['company'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    <a href="/agendamento#company"
+                      >É obrigatório informar a sua empresa.</a
+                    >
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['email'].hasError('pattern')">
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError('pattern')
+                    "
+                  >
                     <a href="/agendamento#email">Formato de email inválido.</a>
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['date'].hasError('required')">
-                    <a href="/agendamento#date">É obrigatório informar a data.</a>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['date'].hasError('required')
+                    "
+                  >
+                    <a href="/agendamento#date"
+                      >É obrigatório informar a data.</a
+                    >
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['date'].hasError('pattern')">
-                    <a href="/agendamento#date">Formato de data inválido (DD/MM/YYYY) ou data não existe.</a>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['date'].hasError('pattern')
+                    "
+                  >
+                    <a href="/agendamento#date"
+                      >Formato de data inválido (DD/MM/YYYY) ou data não
+                      existe.</a
+                    >
                   </li>
-                  <li *ngIf="clientScheduleForm.controls['time'].hasError('required')">
-                      <a href="/agendamento#time">É obrigatório informar o horário.</a>
-                    </li>
+                  <li
+                    *ngIf="
+                      clientScheduleForm.controls['time'].hasError('required')
+                    "
+                  >
+                    <a href="/agendamento#time"
+                      >É obrigatório informar o horário.</a
+                    >
+                  </li>
                 </ul>
               </div>
             </div>
 
-            <form [formGroup]="clientScheduleForm" (ngSubmit)="submitForm(clientScheduleForm.value)">
-              <div class="form-group" [ngClass]="{
-                  'has-error': !clientScheduleForm.controls['name'].valid && submitted
-                }">
+            <form
+              [formGroup]="clientScheduleForm"
+              (ngSubmit)="submitForm(clientScheduleForm.value)"
+            >
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !clientScheduleForm.controls['name'].valid && submitted
+                }"
+              >
                 <label for="name">
-                  <span class="visuallyhidden">Seu Nome (Obrigatório para Agendamento)</span>
-                  <input id="name" class="form-control" type="text" [formControl]="clientScheduleForm.controls['name']"
-                    placeholder="Seu Nome" />
-                  <div *ngIf="
-                      clientScheduleForm.controls['name'].hasError('required') &&
-                      submitted
-                    " class="alert alert-danger">
+                  <span class="visuallyhidden"
+                    >Seu Nome (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="name"
+                    class="form-control"
+                    type="text"
+                    [formControl]="clientScheduleForm.controls['name']"
+                    placeholder="Seu Nome"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['name'].hasError(
+                        'required'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     É obrigatório informar o seu nome.
                   </div>
                 </label>
               </div>
 
-              <div class="form-group" [ngClass]="{
-                  'has-error': !clientScheduleForm.controls['email'].valid && submitted
-                }">
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !clientScheduleForm.controls['email'].valid && submitted
+                }"
+              >
                 <label for="email">
-                  <span class="visuallyhidden">Email (Obrigatório para Agendamento)</span>
-                  <input id="email" class="form-control" type="text" placeholder="Email"
-                    [formControl]="clientScheduleForm.controls['email']" />
-                  <div *ngIf="
-                      clientScheduleForm.controls['email'].hasError('required') &&
-                      submitted
-                    " class="alert alert-danger">
+                  <span class="visuallyhidden"
+                    >Email (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="email"
+                    class="form-control"
+                    type="text"
+                    placeholder="Email"
+                    [formControl]="clientScheduleForm.controls['email']"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError(
+                        'required'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     É obrigatório informar o seu email.
                   </div>
-                  <div *ngIf="
-                      clientScheduleForm.controls['email'].hasError('pattern') &&
-                      submitted
-                    " class="alert alert-danger">
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['email'].hasError(
+                        'pattern'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     Formato de email inválido.
                   </div>
                 </label>
               </div>
 
-              <div class="form-group" [ngClass]="{
-                  'has-error': !clientScheduleForm.controls['company'].valid && submitted
-                }">
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !clientScheduleForm.controls['company'].valid && submitted
+                }"
+              >
                 <label for="company">
-                  <span class="visuallyhidden">Empresa (Obrigatório para Agendamento)</span>
-                  <select id="company" class="form-control" [formControl]="clientScheduleForm.controls['company']">
-                    <option *ngFor="let opt of companies | async" [value]="opt.id" [ngClass]='opt.id == 0 ? placeholder : naosei'>
-                      {{opt.name}}</option>
+                  <span class="visuallyhidden"
+                    >Empresa (Obrigatório para Agendamento)</span
+                  >
+                  <select
+                    id="company"
+                    class="form-control"
+                    [formControl]="clientScheduleForm.controls['company']"
+                  >
+                    <option value="">Empresa</option>
+                    <option
+                      *ngFor="let opt of companies | async"
+                      [value]="opt.id"
+                      [ngClass]="opt.id == 0 ? placeholder : naosei"
+                    >
+                      {{ opt.name }}</option
+                    >
                   </select>
-                  <div *ngIf="
-                      clientScheduleForm.controls['company'].hasError('required') &&
-                      submitted
-                    " class="alert alert-danger">
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['company'].hasError(
+                        'required'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     É obrigatório informar a sua empresa.
                   </div>
                 </label>
               </div>
 
-
-              <div class="form-group" [ngClass]="{
-                  'has-error': !clientScheduleForm.controls['email'].valid && submitted
-                }">
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !clientScheduleForm.controls['email'].valid && submitted
+                }"
+              >
                 <label for="date">
-                  <span class="visuallyhidden">Data (Obrigatório para Agendamento)</span>
-                  <input id="date" class="form-control" type="text" placeholder="Data"
-                    [formControl]="clientScheduleForm.controls['date']" [textMask]="{mask: datemask}" />
-                  <div *ngIf="
-                      clientScheduleForm.controls['date'].hasError('required') &&
-                      submitted
-                    " class="alert alert-danger">
+                  <span class="visuallyhidden"
+                    >Data (Obrigatório para Agendamento)</span
+                  >
+                  <input
+                    id="date"
+                    class="form-control"
+                    type="text"
+                    placeholder="Data"
+                    [formControl]="clientScheduleForm.controls['date']"
+                    [textMask]="{ mask: datemask }"
+                  />
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['date'].hasError(
+                        'required'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     É obrigatório informar uma data.
                   </div>
-                  <div *ngIf="
+                  <div
+                    *ngIf="
                       clientScheduleForm.controls['date'].hasError('pattern') &&
                       submitted
-                    " class="alert alert-danger">
+                    "
+                    class="alert alert-danger"
+                  >
                     Formato de data inválido (DD/MM/YYYY) ou data não existe.
                   </div>
                 </label>
               </div>
 
-              <div class="form-group" [ngClass]="{
-                'has-error': !clientScheduleForm.controls['time'].valid && submitted
-              }">
+              <div
+                class="form-group"
+                [ngClass]="{
+                  'has-error':
+                    !clientScheduleForm.controls['time'].valid && submitted
+                }"
+              >
                 <label for="time">
-                  <span class="visuallyhidden">Horário (Obrigatório para Agendamento)</span>
-                  <select id="time" class="form-control" [formControl]="clientScheduleForm.controls['time']">
+                  <span class="visuallyhidden"
+                    >Horário (Obrigatório para Agendamento)</span
+                  >
+                  <select
+                    id="time"
+                    class="form-control"
+                    [formControl]="clientScheduleForm.controls['time']"
+                  >
+                    <option value="">Horario</option>
                     <option *ngFor="let opt of times" [value]="opt.key">
-                      {{opt.value}}</option>
+                      {{ opt.value }}</option
+                    >
                   </select>
-                  <div *ngIf="
-                    clientScheduleForm.controls['time'].hasError('required') &&
-                    submitted
-                  " class="alert alert-danger">
+                  <div
+                    *ngIf="
+                      clientScheduleForm.controls['time'].hasError(
+                        'required'
+                      ) && submitted
+                    "
+                    class="alert alert-danger"
+                  >
                     É obrigatório informar o horário.
                   </div>
                 </label>
