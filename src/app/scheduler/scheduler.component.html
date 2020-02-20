@@ -206,7 +206,6 @@
                     <option
                       *ngFor="let opt of companies | async"
                       [value]="opt.id"
-                      [ngClass]="opt.id == 0 ? placeholder : naosei"
                     >
                       {{ opt.name }}</option
                     >
@@ -282,8 +281,8 @@
                     [formControl]="clientScheduleForm.controls['time']"
                   >
                     <option value="">Horario</option>
-                    <option *ngFor="let opt of times" [value]="opt.key">
-                      {{ opt.value }}</option
+                    <option *ngFor="let opt of times | async" [value]="opt.id">
+                      {{ opt.time }}</option
                     >
                   </select>
                   <div

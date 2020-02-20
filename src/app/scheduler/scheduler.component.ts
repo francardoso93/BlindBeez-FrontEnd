@@ -1,13 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { SchedulerService } from "./scheduler.service";
-import { Company } from "./company";
-import { Observable } from "rxjs";
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SchedulerService } from './scheduler.service';
+import { Company } from './company';
+import { Observable, Scheduler } from 'rxjs';
+import { Schedule } from './schedule';
 
 @Component({
-  selector: "app-scheduler",
-  templateUrl: "./scheduler.component.html",
-  styleUrls: ["./scheduler.component.css"]
+  selector: 'app-scheduler',
+  templateUrl: './scheduler.component.html',
+  styleUrls: ['./scheduler.component.css']
 })
 export class SchedulerComponent implements OnInit {
   clientScheduleForm: FormGroup;
@@ -16,31 +17,32 @@ export class SchedulerComponent implements OnInit {
 
   // TODO: Receber esses dados de serviço
   companies: Observable<Company[]>;
+  times: Observable<Schedule[]>;
 
-  times = [
-    {
-      key: "12:00",
-      value: "12:00"
-    },
-    {
-      key: "13:30",
-      value: "13:30"
-    },
-    {
-      key: "14:00",
-      value: "14:00"
-    }
-  ];
+  // times = [
+  //   {
+  //     key: '12:00',
+  //     value: '12:00'
+  //   },
+  //   {
+  //     key: '13:30',
+  //     value: '13:30'
+  //   },
+  //   {
+  //     key: '14:00',
+  //     value: '14:00'
+  //   }
+  // ];
 
   //
 
   public datemask = [
     /[0-9]/,
     /[0-9]/,
-    "/",
+    '/',
     /[0-1]/,
     /[0-9]/,
-    "/",
+    '/',
     /[0-9]/,
     /[0-9]/,
     /[0-9]/,
@@ -54,6 +56,7 @@ export class SchedulerComponent implements OnInit {
 
   getCompanies() {
     this.companies = this.schedulerService.listAvailableCompanies();
+    this.times = this.schedulerService.listAvailableTimes();
   }
 
   ngOnInit() {
@@ -70,18 +73,18 @@ export class SchedulerComponent implements OnInit {
           Validators.pattern(/\b\S+@\S+\b/g)
         ])
       ],
-      company: ["", Validators.required],
+      company: ['', Validators.required],
       date: [
         null,
         Validators.compose([
           Validators.required,
           Validators.pattern(
-            "^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/][0-2][0-9][0-9][0-9]"
+            '^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/][0-2][0-9][0-9][0-9]'
           )
         ])
       ],
-      massotherapist: ["", Validators.required],
-      time: ["", Validators.required]
+      massotherapist: ['', Validators.required],
+      time: ['', Validators.required]
     });
   }
 
@@ -95,14 +98,14 @@ export class SchedulerComponent implements OnInit {
       //TODO: Submit real do formulario JSON
       setTimeout(() => {
         const messageHeading = <HTMLElement>(
-          document.querySelector("#message-heading")
+          document.querySelector('#message-heading')
         );
         messageHeading.focus();
       }, 100);
     } else {
       setTimeout(() => {
         const errorHeading = <HTMLElement>(
-          document.querySelector("#error-heading")
+          document.querySelector('#error-heading')
         );
         errorHeading.focus();
       }, 100);

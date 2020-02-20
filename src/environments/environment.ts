@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiroot: 'http://localhost:3000',
-  companies: '/companies'
+  companies: '/companies',
+  schedules: '/schedules',
 };
 
 /*
