@@ -43,7 +43,7 @@ export class SchedulerComponent implements OnInit {
     /[0-1]/,
     /[0-9]/,
     '/',
-    /[0-9]/,
+    /[1-2]/,
     /[0-9]/,
     /[0-9]/,
     /[0-9]/

@@ -3,25 +3,31 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Company } from './company';
 import { Schedule } from './schedule';
-import { Observable, Scheduler } from 'rxjs';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulerService {
+  schedule: Schedule = new Schedule();
 
   constructor(private http: HttpClient) { }
 
   listAvailableCompanies(): Observable<Company[]> {
-     return this.http.get<Company[]>(environment.apiroot + environment.companies);
+    return this.http.get<Company[]>(environment.apiroot + environment.companies);
   }
 
-  listAvailableTimes(): Observable<Schedule[]> { // TODO: Receber valor 'date' a partir do input
-    const params = new HttpParams().set('onlyAvailableTime', 'true').set('date', '2020-10-01');
+  listAvailableTimes(): Observable<Schedule[]> {
+    if (this.schedule.date && this.schedule.company) {
+      const params = new HttpParams()
+        .set('onlyAvailableTime', 'true')
+        .set('date', this.schedule.date)
+        .set('company', this.schedule.company.id.toString());
 
-    return this.http.get<Schedule[]>(environment.apiroot + environment.schedules, {
-      params
-    });
- }
+      return this.http.get<Schedule[]>(environment.apiroot + environment.schedules, {
+        params
+      });
+    }
+  }
 }
