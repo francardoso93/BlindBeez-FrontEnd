@@ -130,6 +130,7 @@
                     class="form-control"
                     type="text"
                     [formControl]="clientScheduleForm.controls['name']"
+                    [(ngModel)]="client.name" 
                     placeholder="Seu Nome"
                   />
                   <div
@@ -160,8 +161,9 @@
                     id="email"
                     class="form-control"
                     type="text"
-                    placeholder="Email"
                     [formControl]="clientScheduleForm.controls['email']"
+                    [(ngModel)]="client.email" 
+                    placeholder="Email"
                   />
                   <div
                     *ngIf="
@@ -201,10 +203,12 @@
                     id="company"
                     class="form-control"
                     [formControl]="clientScheduleForm.controls['company']"
+                    [(ngModel)]="company.id" 
+                    (blur)="getAvailableTimes(date, company.id)"
                   >
-                    <option value="">Empresa</option>
+                    <option value=undefined disabled>Empresa</option>
                     <option
-                      *ngFor="let opt of companies | async"
+                      *ngFor="let opt of availableCompanies | async"
                       [value]="opt.id"
                     >
                       {{ opt.name }}</option
@@ -241,6 +245,8 @@
                     placeholder="Data"
                     [formControl]="clientScheduleForm.controls['date']"
                     [textMask]="{ mask: datemask }"
+                    [(ngModel)]="date" 
+                    (blur)="getAvailableTimes(date, company.id)"
                   />
                   <div
                     *ngIf="
@@ -279,8 +285,9 @@
                     id="time"
                     class="form-control"
                     [formControl]="clientScheduleForm.controls['time']"
+                    [(ngModel)]="schedule.id" 
                   >
-                    <option value="">Horario</option>
+                    <option value=undefined disabled>Horario</option>
                     <option *ngFor="let opt of times | async" [value]="opt.id">
                       {{ opt.time }}</option
                     >

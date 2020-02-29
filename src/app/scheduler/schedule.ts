@@ -1,6 +1,6 @@
 export class Schedule {
     id: number;
-    date: string;
+    date: Date;
     time: string;
     reserved: boolean;
 }

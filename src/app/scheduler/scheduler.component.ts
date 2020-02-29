@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SchedulerService } from './scheduler.service';
-import { Company } from './company';
-import { Observable, Scheduler } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Schedule } from './schedule';
+import { Company } from './company';
+import { Client } from './client';
 
 @Component({
   selector: 'app-scheduler',
@@ -14,36 +15,21 @@ export class SchedulerComponent implements OnInit {
   clientScheduleForm: FormGroup;
   showMessage: boolean;
   submitted: boolean;
-
-  // TODO: Receber esses dados de serviço
-  companies: Observable<Company[]>;
+  client: Client;
+  company: Company;
+  date: string;
+  schedule: Schedule;
+  availableCompanies: Observable<Company[]>;
   times: Observable<Schedule[]>;
 
-  // times = [
-  //   {
-  //     key: '12:00',
-  //     value: '12:00'
-  //   },
-  //   {
-  //     key: '13:30',
-  //     value: '13:30'
-  //   },
-  //   {
-  //     key: '14:00',
-  //     value: '14:00'
-  //   }
-  // ];
-
-  //
-
   public datemask = [
-    /[0-9]/,
+    /[0-3]/,
     /[0-9]/,
     '/',
     /[0-1]/,
     /[0-9]/,
     '/',
-    /[0-9]/,
+    /[1-2]/,
     /[0-9]/,
     /[0-9]/,
     /[0-9]/
@@ -52,14 +38,23 @@ export class SchedulerComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private schedulerService: SchedulerService
-  ) {}
+  ) { }
 
   getCompanies() {
-    this.companies = this.schedulerService.listAvailableCompanies();
-    this.times = this.schedulerService.listAvailableTimes();
+    this.availableCompanies = this.schedulerService.listCompanies();
+  }
+
+  getAvailableTimes(date: string, companyId: number) {
+    if (date && companyId) {
+      console.log('Buscando horarios disponiveis');
+      this.times = this.schedulerService.listSchedules(date, companyId, true);
+    }
   }
 
   ngOnInit() {
+    this.client = new Client();
+    this.company = new Company();
+    this.schedule = new Schedule();
     this.showMessage = false;
     this.submitted = false;
     this.getCompanies();
@@ -88,7 +83,13 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
+  // onBlur() {
+  //   this.getTimes(this.date, this.company.id);
+  // }
+
   submitForm(value: any) {
+    console.log(this.company.id);
+    console.log(this.client.name);
     console.log(value);
 
     this.submitted = true;
