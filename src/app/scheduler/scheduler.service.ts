@@ -4,10 +4,6 @@ import { environment } from 'src/environments/environment';
 import { Company } from './company';
 import { Schedule } from './schedule';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
-=======
-
->>>>>>> f62f82065c7416b24395a241af3e86548c7d9ef6
 
 @Injectable({
   providedIn: 'root'
