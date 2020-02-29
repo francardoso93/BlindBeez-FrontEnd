@@ -83,10 +83,6 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
-  // onBlur() {
-  //   this.getTimes(this.date, this.company.id);
-  // }
-
   submitForm(value: any) {
     console.log(this.company.id);
     console.log(this.client.name);
