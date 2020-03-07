@@ -18,15 +18,15 @@ export class SchedulerService {
   }
 
   listSchedules(date: string, companyId: number, onlyAvailableTime: boolean): Observable<Schedule[]> {
-    const params = new HttpParams();
+    let params = new HttpParams();
     if (date) {
-      params.set('date', date);
+      params = params.set('date', date);
     }
     if (companyId) {
-      params.set('companyId', companyId.toString());
+      params = params.set('companyId', companyId.toString());
     }
     if (onlyAvailableTime) {
-      params.set('onlyAvailableTime', String(onlyAvailableTime));
+      params = params.set('onlyAvailableTime', String(onlyAvailableTime));
     }
     return this.http.get<Schedule[]>(
       environment.apiroot + environment.schedules,
