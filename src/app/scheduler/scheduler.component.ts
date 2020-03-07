@@ -78,7 +78,6 @@ export class SchedulerComponent implements OnInit {
           )
         ])
       ],
-      massotherapist: ['', Validators.required],
       time: ['', Validators.required]
     });
   }
