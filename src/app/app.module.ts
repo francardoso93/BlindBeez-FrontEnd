@@ -7,6 +7,8 @@ import { HomeModule } from './home/home.module';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -16,6 +18,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
     HeaderModule,
     FooterModule,
     SchedulerModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [
     AppComponent,
