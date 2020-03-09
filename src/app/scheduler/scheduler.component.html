@@ -62,12 +62,12 @@
                   </li>
                   <li
                     *ngIf="
-                      clientScheduleForm.controls['company'].hasError(
+                      clientScheduleForm.controls['companyId'].hasError(
                         'required'
                       )
                     "
                   >
-                    <a href="/agendamento#company"
+                    <a href="/agendamento#companyId"
                       >É obrigatório informar a sua empresa.</a
                     >
                   </li>
@@ -192,19 +192,19 @@
                 class="form-group"
                 [ngClass]="{
                   'has-error':
-                    !clientScheduleForm.controls['company'].valid && submitted
+                    !clientScheduleForm.controls['companyId'].valid && submitted
                 }"
               >
-                <label for="company">
+                <label for="companyId">
                   <span class="visuallyhidden"
                     >Empresa (Obrigatório para Agendamento)</span
                   >
                   <select
-                    id="company"
+                    id="companyId"
                     class="form-control"
-                    [formControl]="clientScheduleForm.controls['company']"
-                    [(ngModel)]="company.id" 
-                    (blur)="getAvailableTimes(date, company.id)"
+                    [formControl]="clientScheduleForm.controls['companyId']"
+                    [(ngModel)]="companyId" 
+                    (blur)="getAvailableTimes(date, companyId)"
                   >
                     <option value=undefined disabled>Empresa</option>
                     <option
@@ -216,7 +216,7 @@
                   </select>
                   <div
                     *ngIf="
-                      clientScheduleForm.controls['company'].hasError(
+                      clientScheduleForm.controls['companyId'].hasError(
                         'required'
                       ) && submitted
                     "
@@ -246,7 +246,7 @@
                     [formControl]="clientScheduleForm.controls['date']"
                     [textMask]="{ mask: datemask }"
                     [(ngModel)]="date" 
-                    (blur)="getAvailableTimes(date, company.id)"
+                    (blur)="getAvailableTimes(date, companyId)"
                   />
                   <div
                     *ngIf="

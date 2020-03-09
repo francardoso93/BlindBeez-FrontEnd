@@ -16,7 +16,7 @@ export class SchedulerComponent implements OnInit {
   showMessage: boolean;
   submitted: boolean;
   client: Client;
-  company: Company;
+  companyId: number;
   date: string;
   schedule: Schedule;
   availableCompanies: Observable<Company[]>;
@@ -53,7 +53,6 @@ export class SchedulerComponent implements OnInit {
 
   ngOnInit() {
     this.client = new Client();
-    this.company = new Company();
     this.schedule = new Schedule();
     this.showMessage = false;
     this.submitted = false;
@@ -68,7 +67,7 @@ export class SchedulerComponent implements OnInit {
           Validators.pattern(/\b\S+@\S+\b/g)
         ])
       ],
-      company: ['', Validators.required],
+      companyId: ['', Validators.required],
       date: [
         null,
         Validators.compose([
@@ -82,27 +81,21 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
-  submitForm(value: any) {
-    console.log(this.company.id);
-    console.log(this.client.name);
+  async submitForm(value: any) {
     console.log(value);
 
     this.submitted = true;
 
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
-      //TODO: Submit real do formulario JSON
-      setTimeout(() => {
-        const messageHeading = <HTMLElement>(
-          document.querySelector('#message-heading')
-        );
-        messageHeading.focus();
-      }, 100);
+      let postResult = await this.schedulerService.postReserverSchedule(value).subscribe();
+      const messageHeading: HTMLElement =
+        document.querySelector('#message-heading');
+      messageHeading.focus();
     } else {
       setTimeout(() => {
-        const errorHeading = <HTMLElement>(
-          document.querySelector('#error-heading')
-        );
+        const errorHeading: HTMLElement =
+          document.querySelector('#error-heading');
         errorHeading.focus();
       }, 100);
     }
