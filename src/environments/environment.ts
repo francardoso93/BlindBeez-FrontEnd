@@ -7,6 +7,7 @@ export const environment = {
   apiroot: 'http://localhost:3000',
   companies: '/companies',
   schedules: '/schedules',
+  client_schedule: '/client-scheduler',
 };
 
 /*
