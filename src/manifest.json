@@ -1,7 +1,7 @@
 {
-  "name": "scheduler-blind-beez",
-  "short_name": "scheduler-blind-beez",
-  "theme_color": "#1976d2",
+  "name": "Blind Beez",
+  "short_name": "Blind Beez",
+  "theme_color": "#eeae04",
   "background_color": "#fafafa",
   "display": "standalone",
   "orientation": "portrait",
