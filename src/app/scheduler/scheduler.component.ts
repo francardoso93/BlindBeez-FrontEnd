@@ -44,9 +44,8 @@ export class SchedulerComponent implements OnInit {
     this.availableCompanies = this.schedulerService.listCompanies();
   }
 
-  getAvailableTimes(date: string, companyId: number) {
-    if (date && companyId) {
-      console.log('Buscando horarios disponiveis');
+  async getAvailableTimes(date: string, companyId: number) {
+    if (date && Date.parse(date) && companyId) {
       this.times = this.schedulerService.listSchedules(date, companyId, true);
     }
   }

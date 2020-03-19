@@ -204,7 +204,7 @@
                     class="form-control"
                     [formControl]="clientScheduleForm.controls['companyId']"
                     [(ngModel)]="companyId" 
-                    (blur)="getAvailableTimes(date, companyId)"
+                    (change)="getAvailableTimes(date, companyId)"
                   >
                     <option value=undefined disabled>Empresa</option>
                     <option
@@ -246,7 +246,7 @@
                     [formControl]="clientScheduleForm.controls['date']"
                     [textMask]="{ mask: datemask }"
                     [(ngModel)]="date" 
-                    (blur)="getAvailableTimes(date, companyId)"
+                    (input)="getAvailableTimes(date, companyId)"
                   />
                   <div
                     *ngIf="
@@ -286,7 +286,6 @@
                     class="form-control"
                     [formControl]="clientScheduleForm.controls['scheduleId']"
                     [(ngModel)]="schedule.id" 
-                    (change)="logCurrentOption($event.target.value)"
                   >
                     <option value=undefined disabled>Horario</option>
                     <option *ngFor="let opt of times | async" [value]="opt.id">
