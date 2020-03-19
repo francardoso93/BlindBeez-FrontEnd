@@ -99,7 +99,7 @@
                   </li>
                   <li
                     *ngIf="
-                      clientScheduleForm.controls['time'].hasError('required')
+                      clientScheduleForm.controls['scheduleId'].hasError('required')
                     "
                   >
                     <a href="/agendamento#time"
@@ -274,27 +274,27 @@
                 class="form-group"
                 [ngClass]="{
                   'has-error':
-                    !clientScheduleForm.controls['time'].valid && submitted
+                    !clientScheduleForm.controls['scheduleId'].valid && submitted
                 }"
               >
-                <label for="time">
+                <label for="scheduleId">
                   <span class="visuallyhidden"
                     >Horário (Obrigatório para Agendamento)</span
                   >
                   <select
-                    id="time"
+                    id="scheduleId"
                     class="form-control"
-                    [formControl]="clientScheduleForm.controls['time']"
+                    [formControl]="clientScheduleForm.controls['scheduleId']"
                     [(ngModel)]="schedule.id" 
+                    (change)="logCurrentOption($event.target.value)"
                   >
                     <option value=undefined disabled>Horario</option>
                     <option *ngFor="let opt of times | async" [value]="opt.id">
-                      {{ opt.time }}</option
-                    >
+                      {{ opt.time }}</option>
                   </select>
                   <div
                     *ngIf="
-                      clientScheduleForm.controls['time'].hasError(
+                      clientScheduleForm.controls['scheduleId'].hasError(
                         'required'
                       ) && submitted
                     "

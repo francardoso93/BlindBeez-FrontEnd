@@ -37,7 +37,7 @@ export class SchedulerService {
     );
   }
 
-  postReserverSchedule(reservedSchedule) {
+  postReservedSchedule(reservedSchedule) {
     return this.http.post(environment.apiroot + environment.client_schedule, reservedSchedule).pipe(
       catchError(this.handleError)
     );

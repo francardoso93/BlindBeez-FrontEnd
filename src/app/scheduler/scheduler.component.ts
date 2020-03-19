@@ -77,7 +77,7 @@ export class SchedulerComponent implements OnInit {
           )
         ])
       ],
-      time: ['', Validators.required]
+      scheduleId: ['', Validators.required]
     });
   }
 
@@ -88,7 +88,7 @@ export class SchedulerComponent implements OnInit {
 
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
-      let postResult = await this.schedulerService.postReserverSchedule(value).subscribe();
+      let postResult = await this.schedulerService.postReservedSchedule(value).subscribe();
       const messageHeading: HTMLElement =
         document.querySelector('#message-heading');
       messageHeading.focus();
