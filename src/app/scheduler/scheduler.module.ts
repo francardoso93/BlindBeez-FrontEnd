@@ -5,10 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { SubmitResultComponent } from './submit-result/submit-result.component';
+import { SchedulerService } from './scheduler.service';
+import { SubmitResultService } from './submit-result/submit-result.service';
 
 
 @NgModule({
-  declarations: [SchedulerComponent],
+  declarations: [SchedulerComponent, SubmitResultComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -16,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     TextMaskModule,
     RouterModule,
     HttpClientModule
-  ]
+  ],
+  providers: [SubmitResultService, SchedulerService]
 })
 export class SchedulerModule { }

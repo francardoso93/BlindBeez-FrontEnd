@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SchedulerService } from './scheduler.service';
 import { Observable } from 'rxjs';
 import { Schedule } from './schedule';
 import { Company } from './company';
 import { Client } from './client';
+import { Router } from '@angular/router';
+import { SchedulerService } from './scheduler.service';
+import { SubmitResultService } from './submit-result/submit-result.service';
 
 @Component({
   selector: 'app-scheduler',
@@ -20,7 +22,7 @@ export class SchedulerComponent implements OnInit {
   date: string;
   schedule: Schedule;
   availableCompanies: Observable<Company[]>;
-  times: Observable<Schedule[]>;
+  times: Schedule[];
 
   public datemask = [
     /[0-3]/,
@@ -37,7 +39,9 @@ export class SchedulerComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private schedulerService: SchedulerService
+    private schedulerService: SchedulerService,
+    private submitResultService: SubmitResultService,
+    private router: Router,
   ) { }
 
   getCompanies() {
@@ -45,9 +49,16 @@ export class SchedulerComponent implements OnInit {
   }
 
   async getAvailableTimes(date: string, companyId: number) {
+    this.times = [];
     if (date && Date.parse(date) && companyId) {
-      this.times = this.schedulerService.listSchedules(date, companyId, true);
+      this.schedulerService.listSchedules(date, companyId, true).subscribe(data => {
+        this.times = data;
+      });
     }
+  }
+
+  checkIfAllTimesForTodayAreUnavailable(): boolean {
+    return this.date && Date.parse(this.date) && this.companyId != null && (this.times == null || this.times.length === 0);
   }
 
   ngOnInit() {
@@ -88,9 +99,9 @@ export class SchedulerComponent implements OnInit {
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
       let postResult = await this.schedulerService.postReservedSchedule(value).subscribe();
-      const messageHeading: HTMLElement =
-        document.querySelector('#message-heading');
-      messageHeading.focus();
+      this.submitResultService
+        .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');
+      this.router.navigate(['/resposta']);
     } else {
       setTimeout(() => {
         const errorHeading: HTMLElement =
