@@ -98,19 +98,19 @@ export class SchedulerComponent implements OnInit {
 
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
-      await this.schedulerService.postReservedSchedule(value).subscribe(response => {
+      await this.schedulerService.postReservedSchedule(value).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');
         this.router.navigate(['/resposta']);
-      }, errorResponse => {
+      }, () => {
         this.submitResultService
           .setResultSubmitResultText('Erro', 'Não foi possível realizar seu agendamento. Favor nos avisar em contato@blindbeez.com.br');
         this.router.navigate(['/resposta']);
       });
     } else {
-        const errorHeading: HTMLElement =
-          document.querySelector('#error-heading');
-        errorHeading.focus();
+      const errorHeading: HTMLElement =
+        document.querySelector('#error-heading');
+      errorHeading.focus();
     }
   }
 }

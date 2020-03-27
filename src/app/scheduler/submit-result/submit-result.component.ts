@@ -12,8 +12,8 @@ export class SubmitResultComponent implements OnInit {
   body: string;
 
   constructor(
-    private submitResultService: SubmitResultService,
     private router: Router,
+    submitResultService: SubmitResultService,
   ) {
     this.header = submitResultService.getHeader();
     this.body = submitResultService.getBody();
