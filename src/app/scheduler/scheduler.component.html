@@ -41,10 +41,11 @@
                     ">
                     <a href="/agendamento#name">É obrigatório informar o seu nome.</a>
                   </li>
+
                   <li *ngIf="
-                      clientScheduleForm.controls['email'].hasError('required')
+                      clientScheduleForm.controls['phone'].hasError('required')
                     ">
-                    <a href="/agendamento#email">É obrigatório informar o seu email.</a>
+                    <a href="/agendamento#phone">É obrigatório informar o seu telefone.</a>
                   </li>
                   <li *ngIf="
                       clientScheduleForm.controls['companyId'].hasError(
@@ -52,6 +53,11 @@
                       )
                     ">
                     <a href="/agendamento#companyId">É obrigatório informar a sua empresa.</a>
+                  </li>
+                  <li *ngIf="
+                      clientScheduleForm.controls['email'].hasError('required')
+                    ">
+                    <a href="/agendamento#email">É obrigatório informar o seu email.</a>
                   </li>
                   <li *ngIf="
                       clientScheduleForm.controls['email'].hasError('pattern')
@@ -101,6 +107,25 @@
               </div>
 
               <div class="form-group" [ngClass]="{
+                'has-error':
+                  !clientScheduleForm.controls['phone'].valid && submitted
+              }">
+                <label for="phone">
+                  <span class="visuallyhidden">Telefone (Obrigatório para Agendamento)</span>
+                  <input id="phone" class="form-control" type="text"
+                    [formControl]="clientScheduleForm.controls['phone']" [(ngModel)]="client.phone"
+                    placeholder="Telefone" />
+                  <div *ngIf="
+                    clientScheduleForm.controls['phone'].hasError(
+                      'required'
+                    ) && submitted
+                  " class="alert alert-danger">
+                    É obrigatório informar o seu telefone.
+                  </div>
+                </label>
+              </div>
+
+              <div class="form-group" [ngClass]="{
                   'has-error':
                     !clientScheduleForm.controls['email'].valid && submitted
                 }">
@@ -110,10 +135,10 @@
                     [formControl]="clientScheduleForm.controls['email']" [(ngModel)]="client.email"
                     placeholder="Email" />
                   <div *ngIf="
-                      clientScheduleForm.controls['email'].hasError(
-                        'required'
-                      ) && submitted
-                    " class="alert alert-danger">
+                    clientScheduleForm.controls['email'].hasError(
+                      'required'
+                    ) && submitted
+                  " class="alert alert-danger">
                     É obrigatório informar o seu email.
                   </div>
                   <div *ngIf="
@@ -194,7 +219,7 @@
                       ) && submitted
                     " class="alert alert-danger">
                     É obrigatório informar o horário.
-                  </div>                  
+                  </div>
                 </label>
               </div>
 

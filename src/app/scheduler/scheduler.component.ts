@@ -78,6 +78,7 @@ export class SchedulerComponent implements OnInit {
         ])
       ],
       companyId: ['', Validators.required],
+      phone: [null, Validators.required],
       date: [
         null,
         Validators.compose([
