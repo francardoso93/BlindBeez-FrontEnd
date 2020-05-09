@@ -5,6 +5,7 @@ import { Company } from './company';
 import { Schedule } from './schedule';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,16 @@ export class SchedulerService {
   constructor(private http: HttpClient) { }
 
   listCompanies(): Observable<Company[]> {
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Content-Type': 'application/json',
+    //     'Cache-Control': 'no-cache'
+    //   })
+    // };
     return this.http.get<Company[]>(
-      environment.apiroot + environment.companies
+      environment.apiroot + environment.companies,
+      // httpOptions
     );
   }
 
