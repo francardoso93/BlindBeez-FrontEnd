@@ -15,15 +15,8 @@ export class SchedulerService {
 
   listCompanies(): Observable<Company[]> {
 
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Content-Type': 'application/json',
-    //     'Cache-Control': 'no-cache'
-    //   })
-    // };
     return this.http.get<Company[]>(
       environment.apiroot + environment.companies,
-      // httpOptions
     );
   }
 
