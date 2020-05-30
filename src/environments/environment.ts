@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiroot: 'https://t4rtgby31f.execute-api.us-east-1.amazonaws.com/aws',
+  apiroot: 'http://localhost:3000',
   companies: '/companies',
   schedules: '/schedules',
   client_schedule: '/client-scheduler',
