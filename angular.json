@@ -135,5 +135,8 @@
       }
     }
   },
-  "defaultProject": "scheduler-blind-beez"
+  "defaultProject": "scheduler-blind-beez",
+  "cli": {
+    "analytics": "10986b2e-d109-4ebf-bbc9-e758c08c2ca7"
+  }
 }

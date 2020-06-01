@@ -23,7 +23,7 @@ export class SchedulerService {
   listSchedules(date: string, companyId: number, onlyAvailableTime: boolean): Observable<Schedule[]> {
     let params = new HttpParams();
     if (date) {
-      params = params.set('date', date);
+      params = params.set('date', this.convertDateFormat(date));
     }
     if (companyId) {
       params = params.set('companyId', companyId.toString());
@@ -41,5 +41,29 @@ export class SchedulerService {
 
   postReservedSchedule(reservedSchedule) {
     return this.http.post(environment.apiroot + environment.client_schedule, reservedSchedule);
+  }
+
+  private convertDateFormat(date: string) {
+    let spliter = this.getDateFormatSpliter(date);
+    if (spliter) {
+      var re = new RegExp(spliter,"g");
+      return (date.split(spliter).reverse().join(spliter)).replace(re, '-');
+    } else {
+      return date;
+    }
+  }
+
+  private getDateFormatSpliter(date: string) {
+    let spliter;
+    if (date.includes("/")) {
+      spliter = "/";
+    }
+    else if (date.includes(".")) {
+      spliter = ".";
+    }
+    else if (date.includes("-")) {
+      spliter = "-";
+    }
+    return spliter;
   }
 }
