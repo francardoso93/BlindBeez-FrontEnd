@@ -2,8 +2,13 @@
   <div class="container">
     <section class="padding_t_40 padding_b_50">
       <article class="container" aria-label="Cadastro de novos períodos de agendamento">
-        <p>Nova tela de admin: Cadastra novos períodos de agendamento</p>
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="title_page">Novo periodo para agendamento</h2>
+          </div>
+        </div>
 
+        <!-- ** TODO: Component -->
         <form [formGroup]="newScheduleForm" (ngSubmit)="submitForm(newScheduleForm.value)">
           <div class="form-group" [ngClass]="{
               'has-error':
@@ -27,6 +32,7 @@
             </label>
           </div>
         </form>
+        <!-- ** -->
       </article>
     </section>
   </div>

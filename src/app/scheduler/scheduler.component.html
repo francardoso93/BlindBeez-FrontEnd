@@ -165,7 +165,7 @@
             <label for="date">
               <span class="visuallyhidden">Data (Obrigatório para Agendamento)</span>
               <input id="date" class="form-control" type="text" placeholder="Data"
-                [formControl]="clientScheduleForm.controls['date']" [textMask]="{ mask: datemask }" [(ngModel)]="date"
+                [formControl]="clientScheduleForm.controls['date']" [textMask]="{ mask: dateMask }" [(ngModel)]="date"
                 (input)="getAvailableTimes(date, companyId)" />
               <div *ngIf="
                       clientScheduleForm.controls['date'].hasError(
