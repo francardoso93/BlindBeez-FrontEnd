@@ -22,6 +22,7 @@ export class AdminNewScheduleComponent implements OnInit {
   availableCompanies: Observable<Company[]>;
 
   dateReg: RegExp = environment.dateReg;
+  timeReg: RegExp = environment.timeReg;
   dateMask = environment.dateMask;
 
   constructor(
@@ -49,8 +50,21 @@ export class AdminNewScheduleComponent implements OnInit {
             this.dateReg
           )
         ])],
-      initialTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
-      finalTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
+      initialTime: [null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            this.timeReg
+          )
+        ])], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
+      finalTime: [null,
+        Validators.compose([
+          Validators.required,
+          Validators.pattern(
+            this.timeReg
+          )
+        ])],
+      //TODO: permite de 00:00 a 23:59 (Mascara + validação)
       minuteInterval: ['', Validators.required], //TODO: Permite apenas de 1 a 60 (Mascara + validação)
     });
   }
@@ -59,7 +73,7 @@ export class AdminNewScheduleComponent implements OnInit {
     this.availableCompanies = this.newScheduleService.listCompanies();
   }
 
-  async submitForm(newScheduleFormValue: any) {   
+  async submitForm(newScheduleFormValue: any) {
     this.submitted = true;
     if (this.newScheduleForm.valid) {
       this.showMessage = true;
@@ -75,11 +89,11 @@ export class AdminNewScheduleComponent implements OnInit {
       console.log(newSchedules);
       await this.newScheduleService.postAvailableSchedules(newSchedules).subscribe(() => {
         this.submitResultService
-        .setResultSubmitResultText('Agendas criadas com sucesso!', 'Essas sessões já estão disponíveis para reserva!');
+          .setResultSubmitResultText('Agendas criadas com sucesso!', 'Essas sessões já estão disponíveis para reserva!');
         this.router.navigate(['/admin/agenda/novo/resposta']);
       }, () => {
         this.submitResultService
-        .setResultSubmitResultText('Erro', 'O sistema não foi capaz de criar essas novas sessões');
+          .setResultSubmitResultText('Erro', 'O sistema não foi capaz de criar essas novas sessões');
         this.router.navigate(['/admin/agenda/novo/resposta']);
       });
     } else {

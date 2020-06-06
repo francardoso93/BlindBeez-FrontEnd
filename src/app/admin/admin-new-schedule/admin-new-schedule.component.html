@@ -24,7 +24,7 @@
                       newScheduleForm.controls['companyId'].hasError('required')
                     ">
                     <a href="/admin/agenda/novo#companyId">É obrigatório informar a sua empresa.</a>
-                  </li>                         
+                  </li>
                   <li *ngIf="
                       newScheduleForm.controls['initialDate'].hasError('required')
                     ">
@@ -35,7 +35,7 @@
                     ">
                     <a href="/admin/agenda/novo#initialDate">Formato de data inválido (DD/MM/YYYY) ou data não
                       existe.</a>
-                  </li>     
+                  </li>
                   <li *ngIf="
                       newScheduleForm.controls['finalDate'].hasError('required')
                     ">
@@ -51,17 +51,29 @@
                       newScheduleForm.controls['initialTime'].hasError('required')
                     ">
                     <a href="/admin/agenda/novo#initialTime">É obrigatório informar o horário inicial.</a>
-                  </li>   
+                  </li>
+                  <li *ngIf="
+                  newScheduleForm.controls['initialTime'].hasError('pattern')
+                ">
+                    <a href="/admin/agenda/novo#initialTime">Formato de tempo inválido (HH:MM) ou data não
+                      existe.</a>
+                  </li>
                   <li *ngIf="
                       newScheduleForm.controls['finalTime'].hasError('required')
                     ">
                     <a href="/admin/agenda/novo#finalTime">É obrigatório informar o horário final.</a>
-                  </li>  
+                  </li>
+                  <li *ngIf="
+                  newScheduleForm.controls['finalTime'].hasError('pattern')
+                ">
+                    <a href="/admin/agenda/novo#finalTime">Formato de tempo inválido (HH:MM) ou data não
+                      existe.</a>
+                  </li>
                   <li *ngIf="
                       newScheduleForm.controls['minuteInterval'].hasError('required')
                     ">
                     <a href="/admin/agenda/novo#minuteInterval">É obrigatório informar o Tempo de cada sessão.</a>
-                  </li>                    
+                  </li>
                 </ul>
               </div>
             </div>
@@ -117,7 +129,7 @@
               </div>
             </label>
           </div>
-          
+
           <div class="form-group" [ngClass]="{
             'has-error':
               !newScheduleForm.controls['finalDate'].valid && submitted
@@ -160,6 +172,13 @@
               " class="alert alert-danger">
                 É obrigatório informar o horário inicial.
               </div>
+              <div *ngIf="
+                newScheduleForm.controls['initialTime'].hasError(
+                  'pattern'
+                ) && submitted
+              " class="alert alert-danger">
+              Formato de tempo inválido (HH:MM) ou data não existe.
+              </div>
             </label>
           </div>
 
@@ -172,14 +191,21 @@
               <span class="visuallyhidden">Horário final
               </span>
               <input id="finalTime" class="form-control" type="text"
-                [formControl]="newScheduleForm.controls['finalTime']" [(ngModel)]="finalTime"
-                placeholder="Horário final" />
+              [formControl]="newScheduleForm.controls['finalTime']" [(ngModel)]="finalTime"
+              placeholder="Horário final" />
               <div *ngIf="
                 newScheduleForm.controls['finalTime'].hasError(
                   'required'
                 ) && submitted
               " class="alert alert-danger">
                 É obrigatório informar o horário final.
+              </div>
+              <div *ngIf="
+                newScheduleForm.controls['finalTime'].hasError(
+                  'pattern'
+                ) && submitted
+              " class="alert alert-danger">
+              Formato de tempo inválido (HH:MM) ou data não existe.
               </div>
             </label>
           </div>
@@ -200,7 +226,7 @@
                 ) && submitted
               " class="alert alert-danger">
                 É obrigatório informar o Tempo de cada sessão.
-              </div>
+              </div>              
             </label>
           </div>
 
