@@ -6,7 +6,7 @@ import { Company } from './company';
 import { Client } from './client';
 import { Router } from '@angular/router';
 import { SchedulerService } from './scheduler.service';
-import { SubmitResultService } from './submit-result/submit-result.service';
+import { SubmitResultService } from '../core/submit-result/submit-result.service';
 import { ClientScheduler } from './client.scheduler';
 import { environment } from 'src/environments/environment';
 
@@ -102,11 +102,11 @@ export class SchedulerComponent implements OnInit {
       await this.schedulerService.postReservedSchedule(clientScheduler).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');
-        this.router.navigate(['/resposta']);
+        this.router.navigate(['agendamento/resposta']);
       }, () => {
         this.submitResultService
           .setResultSubmitResultText('Erro', 'Não foi possível realizar seu agendamento. Favor nos avisar em contato@blindbeez.com.br');
-        this.router.navigate(['/resposta']);
+        this.router.navigate(['agendamento/resposta']);
       });
     } else {
       const errorHeading: HTMLElement =

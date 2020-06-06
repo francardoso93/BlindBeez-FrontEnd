@@ -3,10 +3,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable, fromEventPattern } from 'rxjs';
 import { Router } from '@angular/router';
 import { Company } from 'src/app/scheduler/company';
-import { SchedulerService } from 'src/app/scheduler/scheduler.service';
 import { environment } from 'src/environments/environment';
 import { NewSchedule } from './admin-new-schedule';
 import { DateTimeFormatterService } from 'src/app/core/datetime-formatter.service';
+import { AdminNewScheduleService } from './admin-new-schedule.service';
+import { SubmitResultService } from 'src/app/core/submit-result/submit-result.service';
 
 @Component({
   selector: 'app-admin-new-schedule',
@@ -25,8 +26,9 @@ export class AdminNewScheduleComponent implements OnInit {
 
   constructor(
     public fb: FormBuilder,
-    private schedulerService: SchedulerService,
+    private newScheduleService: AdminNewScheduleService,
     private dateTimeFormatterService: DateTimeFormatterService,
+    private submitResultService: SubmitResultService,
     private router: Router, ) { }
 
   ngOnInit() {
@@ -54,11 +56,11 @@ export class AdminNewScheduleComponent implements OnInit {
   }
 
   getCompanies() {
-    this.availableCompanies = this.schedulerService.listCompanies();
+    this.availableCompanies = this.newScheduleService.listCompanies();
   }
 
   async submitForm(newScheduleFormValue: any) {
-    const NewSchedule: NewSchedule = {
+    const newSchedules: NewSchedule = {
       company: {
         id: newScheduleFormValue.companyId,
         name: undefined
@@ -67,6 +69,25 @@ export class AdminNewScheduleComponent implements OnInit {
       finalDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.finalDate) + 'T' + newScheduleFormValue.finalTime + ':00',
       minuteInterval: newScheduleFormValue.minuteInterval,
     }
-    console.log(NewSchedule);
+    console.log(newSchedules);
+
+    this.submitted = true;
+
+    if (this.newScheduleForm.valid) {
+      this.showMessage = true;
+      await this.newScheduleService.postAvailableSchedules(newSchedules).subscribe(() => {
+        this.submitResultService
+        .setResultSubmitResultText('Agendas criadas com sucesso!', 'Essas sessões já estão disponíveis para reserva!');
+        this.router.navigate(['/admin/agenda/novo/resposta']);
+      }, () => {
+        this.submitResultService
+        .setResultSubmitResultText('Erro', 'O sistema não foi capaz de criar essas novas sessões');
+        this.router.navigate(['/admin/agenda/novo/resposta']);
+      });
+    } else {
+      const errorHeading: HTMLElement =
+        document.querySelector('#error-heading');
+      errorHeading.focus();
+    }
   };
 }
