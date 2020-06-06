@@ -20,6 +20,6 @@ import { SubmitResultService } from './submit-result/submit-result.service';
     RouterModule,
     HttpClientModule
   ],
-  providers: [SubmitResultService, SchedulerService]
+  providers: [SubmitResultService, SchedulerService],
 })
 export class SchedulerModule { }

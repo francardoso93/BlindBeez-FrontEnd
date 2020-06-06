@@ -2,7 +2,31 @@
   <div class="container">
     <section class="padding_t_40 padding_b_50">
       <article class="container" aria-label="Cadastro de novos períodos de agendamento">
-          <p>Nova tela de admin: Cadastra novos períodos de agendamento</p>
+        <p>Nova tela de admin: Cadastra novos períodos de agendamento</p>
+
+        <form [formGroup]="newScheduleForm" (ngSubmit)="submitForm(newScheduleForm.value)">
+          <div class="form-group" [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['companyId'].valid && submitted
+            }">
+            <label for="companyId">
+              <span class="visuallyhidden">Empresa (Obrigatório para Agendamento)</span>
+              <select id="companyId" class="form-control" [formControl]="newScheduleForm.controls['companyId']"
+                [(ngModel)]="companyId">
+                <option value=undefined disabled>Empresa</option>
+                <option *ngFor="let opt of availableCompanies | async" [value]="opt.id">
+                  {{ opt.name }}</option>
+              </select>
+              <div *ngIf="
+                  newScheduleForm.controls['companyId'].hasError(
+                    'required'
+                  ) && submitted
+                " class="alert alert-danger">
+                É obrigatório informar a sua empresa.
+              </div>
+            </label>
+          </div>
+        </form>
       </article>
     </section>
   </div>

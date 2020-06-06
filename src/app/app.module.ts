@@ -10,6 +10,7 @@ import { SchedulerModule } from './scheduler/scheduler.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AdminModule } from './admin/admin.module';
+import { AdminNewCompanyComponent } from './admin/admin-new-company/admin-new-company.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,7 @@ import { AdminModule } from './admin/admin.module';
   ],
   declarations: [
     AppComponent,
+    AdminNewCompanyComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

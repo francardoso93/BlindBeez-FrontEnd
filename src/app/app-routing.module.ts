@@ -6,6 +6,7 @@ import { SubmitResultComponent } from './scheduler/submit-result/submit-result.c
 import { AdminScheduleViewerComponent } from './admin/admin-schedule-viewer/admin-schedule-viewer.component';
 import { AdminNewScheduleComponent } from './admin/admin-new-schedule/admin-new-schedule.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminNewCompanyComponent } from './admin/admin-new-company/admin-new-company.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'admin/agenda', component: AdminScheduleViewerComponent},
   { path: 'admin/agenda/novo', component: AdminNewScheduleComponent},
+  { path: 'admin/empresas/novo', component: AdminNewCompanyComponent},
 ];
 
 const routerOptions: ExtraOptions = {

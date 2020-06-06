@@ -4,11 +4,13 @@ import { AdminScheduleViewerComponent } from './admin-schedule-viewer/admin-sche
 import { AdminNewScheduleComponent } from './admin-new-schedule/admin-new-schedule.component';
 import { CalendarTableComponent } from './admin-schedule-viewer/calendar-table/calendar-table.component';
 import { AdminComponent } from './admin.component';
+import { SchedulerModule } from '../scheduler/scheduler.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent],
   imports: [
-    CommonModule
+    CommonModule, SchedulerModule, ReactiveFormsModule
   ]
 })
 export class AdminModule { }
