@@ -7,6 +7,7 @@ import { Client } from './client';
 import { Router } from '@angular/router';
 import { SchedulerService } from './scheduler.service';
 import { SubmitResultService } from './submit-result/submit-result.service';
+import { ClientScheduler } from './client.scheduler';
 
 @Component({
   selector: 'app-scheduler',
@@ -95,14 +96,21 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
-  async submitForm(value: any) {
-    console.log(value);
-
+  async submitForm(clientScheduleFormValue: any) {
+    const clientScheduler: ClientScheduler = {
+      name: clientScheduleFormValue.name,
+      companyId: parseInt(clientScheduleFormValue.companyId),
+      date: clientScheduleFormValue.date,
+      email: clientScheduleFormValue.email,
+      phone: clientScheduleFormValue.phone,
+      scheduleId: parseInt(clientScheduleFormValue.scheduleId),
+    }
+    console.log(clientScheduler);  
     this.submitted = true;
 
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
-      await this.schedulerService.postReservedSchedule(value).subscribe(() => {
+      await this.schedulerService.postReservedSchedule(clientScheduler).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');
         this.router.navigate(['/resposta']);
