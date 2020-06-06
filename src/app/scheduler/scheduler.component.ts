@@ -85,20 +85,19 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
-  async submitForm(clientScheduleFormValue: any) {
-    const clientScheduler: ClientScheduler = {
-      name: clientScheduleFormValue.name,
-      companyId: parseInt(clientScheduleFormValue.companyId),
-      date: clientScheduleFormValue.date,
-      email: clientScheduleFormValue.email,
-      phone: clientScheduleFormValue.phone,
-      scheduleId: parseInt(clientScheduleFormValue.scheduleId),
-    }
-    console.log(clientScheduler);  
+  async submitForm(clientScheduleFormValue: any) {     
     this.submitted = true;
-
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
+      const clientScheduler: ClientScheduler = {
+        name: clientScheduleFormValue.name,
+        companyId: parseInt(clientScheduleFormValue.companyId),
+        date: clientScheduleFormValue.date,
+        email: clientScheduleFormValue.email,
+        phone: clientScheduleFormValue.phone,
+        scheduleId: parseInt(clientScheduleFormValue.scheduleId),
+      }
+      console.log(clientScheduler); 
       await this.schedulerService.postReservedSchedule(clientScheduler).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');

@@ -59,22 +59,20 @@ export class AdminNewScheduleComponent implements OnInit {
     this.availableCompanies = this.newScheduleService.listCompanies();
   }
 
-  async submitForm(newScheduleFormValue: any) {
-    const newSchedules: NewSchedule = {
-      company: {
-        id: newScheduleFormValue.companyId,
-        name: undefined
-      },
-      initialDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.initialDate) + 'T' + newScheduleFormValue.initialTime + ':00',
-      finalDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.finalDate) + 'T' + newScheduleFormValue.finalTime + ':00',
-      minuteInterval: newScheduleFormValue.minuteInterval,
-    }
-    console.log(newSchedules);
-
+  async submitForm(newScheduleFormValue: any) {   
     this.submitted = true;
-
     if (this.newScheduleForm.valid) {
       this.showMessage = true;
+      const newSchedules: NewSchedule = {
+        company: {
+          id: newScheduleFormValue.companyId,
+          name: undefined
+        },
+        initialDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.initialDate) + 'T' + newScheduleFormValue.initialTime + ':00',
+        finalDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.finalDate) + 'T' + newScheduleFormValue.finalTime + ':00',
+        minuteInterval: newScheduleFormValue.minuteInterval,
+      }
+      console.log(newSchedules);
       await this.newScheduleService.postAvailableSchedules(newSchedules).subscribe(() => {
         this.submitResultService
         .setResultSubmitResultText('Agendas criadas com sucesso!', 'Essas sessões já estão disponíveis para reserva!');
