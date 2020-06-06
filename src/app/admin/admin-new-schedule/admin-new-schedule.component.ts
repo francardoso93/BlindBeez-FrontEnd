@@ -24,6 +24,7 @@ export class AdminNewScheduleComponent implements OnInit {
   dateReg: RegExp = environment.dateReg;
   timeReg: RegExp = environment.timeReg;
   dateMask = environment.dateMask;
+  timeMask = environment.timeMask;
 
   constructor(
     public fb: FormBuilder,

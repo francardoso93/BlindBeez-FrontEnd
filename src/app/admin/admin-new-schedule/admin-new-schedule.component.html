@@ -163,7 +163,9 @@
               <span class="visuallyhidden">Horário Inicial
               </span>
               <input id="initialTime" class="form-control" type="text"
-                [formControl]="newScheduleForm.controls['initialTime']" [(ngModel)]="initialTime"
+                [formControl]="newScheduleForm.controls['initialTime']" 
+                [textMask]="{ mask: timeMask }"
+                [(ngModel)]="initialTime"
                 placeholder="Horário Inicial" />
               <div *ngIf="
                 newScheduleForm.controls['initialTime'].hasError(
@@ -191,7 +193,8 @@
               <span class="visuallyhidden">Horário final
               </span>
               <input id="finalTime" class="form-control" type="text"
-              [formControl]="newScheduleForm.controls['finalTime']" [(ngModel)]="finalTime"
+              [formControl]="newScheduleForm.controls['finalTime']" [textMask]="{ mask: timeMask }"
+               [(ngModel)]="finalTime"
               placeholder="Horário final" />
               <div *ngIf="
                 newScheduleForm.controls['finalTime'].hasError(
