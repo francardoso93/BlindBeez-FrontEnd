@@ -9,6 +9,7 @@ import { FooterModule } from './footer/footer.module';
 import { SchedulerModule } from './scheduler/scheduler.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { environment } from '../environments/environment';
     HeaderModule,
     FooterModule,
     SchedulerModule,
+    AdminModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   declarations: [

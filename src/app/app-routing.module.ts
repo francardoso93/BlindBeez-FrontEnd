@@ -3,11 +3,17 @@ import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { SchedulerComponent } from './scheduler/scheduler.component';
 import { SubmitResultComponent } from './scheduler/submit-result/submit-result.component';
+import { AdminScheduleViewerComponent } from './admin/admin-schedule-viewer/admin-schedule-viewer.component';
+import { AdminNewScheduleComponent } from './admin/admin-new-schedule/admin-new-schedule.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'agendamento', component: SchedulerComponent },
   { path: 'resposta', component: SubmitResultComponent },
+  { path: 'admin', component: AdminComponent},
+  { path: 'admin/agenda', component: AdminScheduleViewerComponent},
+  { path: 'admin/agenda/novo', component: AdminNewScheduleComponent},
 ];
 
 const routerOptions: ExtraOptions = {
