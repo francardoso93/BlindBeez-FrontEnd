@@ -4,14 +4,13 @@ import { environment } from 'src/environments/environment';
 import { Company } from './company';
 import { Schedule } from './schedule';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { DateTimeFormatterService } from '../core/datetime-formatter.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulerService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private datimeTimeFormatter: DateTimeFormatterService) { }
 
   listCompanies(): Observable<Company[]> {
 
@@ -23,7 +22,7 @@ export class SchedulerService {
   listSchedules(date: string, companyId: number, onlyAvailableTime: boolean): Observable<Schedule[]> {
     let params = new HttpParams();
     if (date) {
-      params = params.set('date', this.convertDateFormat(date));
+      params = params.set('date', this.datimeTimeFormatter.convertDateFormat(date));
     }
     if (companyId) {
       params = params.set('companyId', companyId.toString());
@@ -41,29 +40,5 @@ export class SchedulerService {
 
   postReservedSchedule(reservedSchedule) {
     return this.http.post(environment.apiroot + environment.client_schedule, reservedSchedule);
-  }
-
-  private convertDateFormat(date: string) {
-    let spliter = this.getDateFormatSpliter(date);
-    if (spliter) {
-      var re = new RegExp(spliter,"g");
-      return (date.split(spliter).reverse().join(spliter)).replace(re, '-');
-    } else {
-      return date;
-    }
-  }
-
-  private getDateFormatSpliter(date: string) {
-    let spliter;
-    if (date.includes("/")) {
-      spliter = "/";
-    }
-    else if (date.includes(".")) {
-      spliter = ".";
-    }
-    else if (date.includes("-")) {
-      spliter = "-";
-    }
-    return spliter;
   }
 }

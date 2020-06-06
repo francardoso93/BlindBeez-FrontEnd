@@ -6,6 +6,7 @@ import { Company } from 'src/app/scheduler/company';
 import { SchedulerService } from 'src/app/scheduler/scheduler.service';
 import { environment } from 'src/environments/environment';
 import { NewSchedule } from './admin-new-schedule';
+import { DateTimeFormatterService } from 'src/app/core/datetime-formatter.service';
 
 @Component({
   selector: 'app-admin-new-schedule',
@@ -25,6 +26,7 @@ export class AdminNewScheduleComponent implements OnInit {
   constructor(
     public fb: FormBuilder,
     private schedulerService: SchedulerService,
+    private dateTimeFormatterService: DateTimeFormatterService,
     private router: Router, ) { }
 
   ngOnInit() {
@@ -59,10 +61,10 @@ export class AdminNewScheduleComponent implements OnInit {
     const NewSchedule: NewSchedule = {
       company: {
         id: newScheduleFormValue.companyId,
-        name: ''
+        name: undefined
       },
-      initialDate: newScheduleFormValue.initialDate + 'T' + newScheduleFormValue.initialTime + ':00',
-      finalDate: newScheduleFormValue.finalDate + 'T' + newScheduleFormValue.finalTime + ':00',
+      initialDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.initialDate) + 'T' + newScheduleFormValue.initialTime + ':00',
+      finalDate: this.dateTimeFormatterService.convertDateFormat(newScheduleFormValue.finalDate) + 'T' + newScheduleFormValue.finalTime + ':00',
       minuteInterval: newScheduleFormValue.minuteInterval,
     }
     console.log(NewSchedule);
