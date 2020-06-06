@@ -11,9 +11,9 @@
         <!-- ** TODO: Component -->
         <form [formGroup]="newScheduleForm" (ngSubmit)="submitForm(newScheduleForm.value)">
           <div class="form-group" [ngClass]="{
-              'has-error':
-                !newScheduleForm.controls['companyId'].valid && submitted
-            }">
+            'has-error':
+              !newScheduleForm.controls['companyId'].valid && submitted
+          }">
             <label for="companyId">
               <span class="visuallyhidden">Empresa (Obrigatório para Agendamento)</span>
               <select id="companyId" class="form-control" [formControl]="newScheduleForm.controls['companyId']"
@@ -23,13 +23,130 @@
                   {{ opt.name }}</option>
               </select>
               <div *ngIf="
-                  newScheduleForm.controls['companyId'].hasError(
-                    'required'
-                  ) && submitted
-                " class="alert alert-danger">
+                newScheduleForm.controls['companyId'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
                 É obrigatório informar a sua empresa.
               </div>
             </label>
+          </div>
+
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !newScheduleForm.controls['initialDate'].valid && submitted
+          }">
+            <label for="initialDate">
+              <span class="visuallyhidden">Data Inicial</span>
+              <input id="initialDate" class="form-control" type="text" placeholder="Data Inicial"
+                [formControl]="newScheduleForm.controls['initialDate']" [textMask]="{ mask: dateMask }"
+                [(ngModel)]="initialDate" />
+              <div *ngIf="
+                newScheduleForm.controls['initialDate'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar uma data incial.
+              </div>
+              <div *ngIf="
+                newScheduleForm.controls['initialDate'].hasError('pattern') &&
+                submitted
+              " class="alert alert-danger">
+                Formato de data inválido (DD/MM/YYYY) ou data não existe.
+              </div>
+            </label>
+          </div>
+          
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !newScheduleForm.controls['finalDate'].valid && submitted
+          }">
+            <label for="finalDate">
+              <span class="visuallyhidden">Data Final</span>
+              <input id="finalDate" class="form-control" type="text" placeholder="Data Final"
+                [formControl]="newScheduleForm.controls['finalDate']" [textMask]="{ mask: dateMask }"
+                [(ngModel)]="finalDate" />
+              <div *ngIf="
+                newScheduleForm.controls['finalDate'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar uma data final.
+              </div>
+              <div *ngIf="
+                newScheduleForm.controls['finalDate'].hasError('pattern') &&
+                submitted
+              " class="alert alert-danger">
+                Formato de data inválido (DD/MM/YYYY) ou data não existe.
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !newScheduleForm.controls['initialTime'].valid && submitted
+          }">
+            <label for="initialTime">
+              <span class="visuallyhidden">Horário Inicial
+              </span>
+              <input id="initialTime" class="form-control" type="text"
+                [formControl]="newScheduleForm.controls['initialTime']" [(ngModel)]="initialTime"
+                placeholder="Horário Inicial" />
+              <div *ngIf="
+                newScheduleForm.controls['initialTime'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar o horário inicial.
+              </div>
+            </label>
+          </div>
+
+
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !newScheduleForm.controls['initialTime'].valid && submitted
+          }">
+            <label for="finalTime">
+              <span class="visuallyhidden">Horário final
+              </span>
+              <input id="finalTime" class="form-control" type="text"
+                [formControl]="newScheduleForm.controls['finalTime']" [(ngModel)]="finalTime"
+                placeholder="Horário final" />
+              <div *ngIf="
+                newScheduleForm.controls['finalTime'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar o horário final.
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !newScheduleForm.controls['initialTime'].valid && submitted
+          }">
+            <label for="minuteInterval">
+              <span class="visuallyhidden">Tempo de cada sessão (minutos)
+              </span>
+              <input id="minuteInterval" class="form-control" type="text"
+                [formControl]="newScheduleForm.controls['minuteInterval']" [(ngModel)]="minuteInterval"
+                placeholder="Tempo de cada sessão (minutos)" />
+              <div *ngIf="
+                newScheduleForm.controls['minuteInterval'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar o Tempo de cada sessão.
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn_blue medium">
+              Confirmar
+            </button>
           </div>
         </form>
         <!-- ** -->

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Company } from 'src/app/scheduler/company';
 import { SchedulerService } from 'src/app/scheduler/scheduler.service';
 import { environment } from 'src/environments/environment';
+import { NewSchedule } from './admin-new-schedule';
 
 @Component({
   selector: 'app-admin-new-schedule',
@@ -44,8 +45,8 @@ export class AdminNewScheduleComponent implements OnInit {
             this.dateReg
           )
         ])],
-      initalTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
-      endTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
+      initialTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
+      finalTime: ['', Validators.required], //TODO: permite de 00:00 a 23:59 (Mascara + validação)
       minuteInterval: ['', Validators.required], //TODO: Permite apenas de 1 a 60 (Mascara + validação)
     });
   }
@@ -54,7 +55,16 @@ export class AdminNewScheduleComponent implements OnInit {
     this.availableCompanies = this.schedulerService.listCompanies();
   }
 
-  async submitForm(newScheduleForm: any) {
-    console.log(newScheduleForm);
+  async submitForm(newScheduleFormValue: any) {
+    const NewSchedule: NewSchedule = {
+      company: {
+        id: newScheduleFormValue.companyId,
+        name: ''
+      },
+      initialDate: newScheduleFormValue.initialDate + 'T' + newScheduleFormValue.initialTime + ':00',
+      finalDate: newScheduleFormValue.finalDate + 'T' + newScheduleFormValue.finalTime + ':00',
+      minuteInterval: newScheduleFormValue.minuteInterval,
+    }
+    console.log(NewSchedule);
   };
 }

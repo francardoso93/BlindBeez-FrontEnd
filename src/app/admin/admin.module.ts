@@ -6,11 +6,12 @@ import { CalendarTableComponent } from './admin-schedule-viewer/calendar-table/c
 import { AdminComponent } from './admin.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent],
   imports: [
-    CommonModule, SchedulerModule, ReactiveFormsModule
+    CommonModule, SchedulerModule, ReactiveFormsModule, TextMaskModule
   ]
 })
 export class AdminModule { }
