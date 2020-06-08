@@ -5,14 +5,15 @@ import { AdminNewScheduleComponent } from './admin-new-schedule/admin-new-schedu
 import { CalendarTableComponent } from './admin-schedule-viewer/calendar-table/calendar-table.component';
 import { AdminComponent } from './admin.component';
 import { SchedulerModule } from '../scheduler/scheduler.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { CoreModule } from '../core/core.module';
+import { DateSelectorComponent } from './admin-schedule-viewer/date-selector/date-selector.component';
 
 @NgModule({
-  declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent],
+  declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent, DateSelectorComponent],
   imports: [
-    CommonModule, SchedulerModule, ReactiveFormsModule, TextMaskModule, CoreModule
+    CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule
   ]
 })
 export class AdminModule { }

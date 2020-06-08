@@ -3,17 +3,39 @@
     <section class="padding_t_40 padding_b_50">
       <article class="container" aria-label="Agenda">
         <div class="row">
-          <div class="col-xs-12">
+          <div class="col-md-6 col-xs-12">
             <h2 class="title_page">Agenda</h2>
           </div>
         </div>
+        <br>
         <div class="row">
-          <button class="btn btn_blue large">
-            Novo Período
-          </button>
+          <div class="col-md-6 col-xs-12">
+            <button class="btn btn_blue large">
+              Novo Período
+            </button>
+          </div>
         </div>
-        <br><br>
-        <app-calendar-table></app-calendar-table>
+        <br>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <label for="companyId">
+              <span class="visuallyhidden">Empresa (Opcional para filtrar tabela de agenda)</span>
+              <select id="companyId" class="form-control" [(ngModel)]="companyId">
+                <option value=undefined disabled>Empresa</option>
+                <option *ngFor="let opt of availableCompanies | async" [value]="opt.id">
+                  {{ opt.name }}</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <app-date-selector></app-date-selector>
+          </div>
+        </div>
+        <br>
+        <app-calendar-table></app-calendar-table> <!-- Não pode ficar dentro de 'row' -->
       </article>
     </section>
   </div>
