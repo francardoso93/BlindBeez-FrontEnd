@@ -7,10 +7,10 @@
     <th scope="col">Telefone</th>
     <th scope="col">Ações</th>
   </tr>
-  <tr>
-    <td scope="row">10:00</td>
-    <td>Karina Mendes</td>
-    <td>(11)99999-9999</td>
+  <tr *ngFor="let schedule of scheduleList | async">
+    <td scope="row">{{schedule.time}}</td>
+    <td>SomeOneMaybe</td>
+    <td>SomeNumberMaybe</td>
     <td>Botão</td>
   </tr>
 </table>

@@ -3,6 +3,7 @@ import { CompanyService } from 'src/app/core/company.service';
 import { Observable } from 'rxjs';
 import { Company } from 'src/app/scheduler/company';
 import { environment } from 'src/environments/environment';
+import { CalendarTableService } from './calendar-table/calendar-table.service';
 
 @Component({
   selector: 'app-admin-schedule-viewer',
@@ -12,7 +13,8 @@ import { environment } from 'src/environments/environment';
 export class AdminScheduleViewerComponent implements OnInit {
   availableCompanies: Observable<Company[]>; 
   companyId: number;
-  constructor(private companyService: CompanyService) { }
+  constructor(
+    private companyService: CompanyService) { }
 
   ngOnInit() {
     this.getCompanies();
