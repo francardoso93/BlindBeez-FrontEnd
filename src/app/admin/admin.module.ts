@@ -9,11 +9,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TextMaskModule } from 'angular2-text-mask';
 import { CoreModule } from '../core/core.module';
 import { DateSelectorComponent } from './admin-schedule-viewer/date-selector/date-selector.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent, DateSelectorComponent],
   imports: [
-    CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule
+    CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule, RouterModule
   ]
 })
 export class AdminModule { }
