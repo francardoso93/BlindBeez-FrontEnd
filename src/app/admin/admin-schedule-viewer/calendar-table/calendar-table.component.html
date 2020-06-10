@@ -1,5 +1,5 @@
-<table class="table">
-  <caption>Agenda do dia 03/06/2020. Contém informações de horário, cliente, telefone e ações de cancelamento ou deleção
+<table class="table" *ngIf="date && companyId">
+  <caption>Agenda do dia {{date}}. Contém informações de horário, cliente, telefone e ações de cancelamento ou deleção
   </caption>
   <tr>
     <th scope="col">Horário</th>

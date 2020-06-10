@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class DateTimeFormatterService {
-    public convertDateFormat(date: string) {
+    public convertDateFormatToBackend(date: string) {
         let spliter = this.getDateFormatSpliter(date);
         if (spliter) {
             var re = new RegExp(spliter, "g");

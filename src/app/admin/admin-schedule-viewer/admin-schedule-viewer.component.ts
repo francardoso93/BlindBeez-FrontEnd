@@ -13,6 +13,8 @@ import { CalendarTableService } from './calendar-table/calendar-table.service';
 export class AdminScheduleViewerComponent implements OnInit {
   availableCompanies: Observable<Company[]>; 
   companyId: number;
+  /** TODO: Receber esse valores do inputs */
+  selectedDate: string = "2020-07-04";
   constructor(
     private companyService: CompanyService) { }
 
