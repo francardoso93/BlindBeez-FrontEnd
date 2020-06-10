@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiroot: 'https://blindbeez.com.br/api',
+  apiroot: 'http://localhost:3000/api',
   companies: '/companies',
   schedules: '/schedules',
   client_schedule: '/client-scheduler',
