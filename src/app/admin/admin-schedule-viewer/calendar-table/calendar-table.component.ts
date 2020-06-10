@@ -20,11 +20,9 @@ export class CalendarTableComponent implements OnInit, OnChanges {
     this.getSchedules();
   }
 
-  ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log("onChange");
+  ngOnChanges(): void {
     this.getSchedules()
   }
-
 
   async getSchedules() {
     if (this.date && this.companyId) {

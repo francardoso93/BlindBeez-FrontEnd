@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -10,6 +10,8 @@ export class DateSelectorComponent implements OnInit {
   initialDate;
   dateMask = environment.dateMask;
   dateReg: RegExp = environment.dateReg;
+  @Output() onDateChanged: EventEmitter<string> = new EventEmitter<string>();
+  
   constructor() { }
 
   ngOnInit() {

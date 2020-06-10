@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/core/company.service';
 import { Observable } from 'rxjs';
 import { Company } from 'src/app/scheduler/company';
+import { DateTimeFormatterService } from 'src/app/core/datetime-formatter.service';
 import { environment } from 'src/environments/environment';
-import { CalendarTableService } from './calendar-table/calendar-table.service';
 
 @Component({
   selector: 'app-admin-schedule-viewer',
@@ -11,12 +11,13 @@ import { CalendarTableService } from './calendar-table/calendar-table.service';
   styleUrls: ['./admin-schedule-viewer.component.css']
 })
 export class AdminScheduleViewerComponent implements OnInit {
-  availableCompanies: Observable<Company[]>; 
+  availableCompanies: Observable<Company[]>;
   companyId: number;
-  /** TODO: Receber esse valores do inputs */
-  selectedDate: string = "2020-07-04";
+  selectedDate: string;
+  dateReg: RegExp = environment.dateReg;
+
   constructor(
-    private companyService: CompanyService) { }
+    private companyService: CompanyService, private dateTimeFormatterService: DateTimeFormatterService) { }
 
   ngOnInit() {
     this.getCompanies();
@@ -26,4 +27,10 @@ export class AdminScheduleViewerComponent implements OnInit {
     this.availableCompanies = this.companyService.listCompanies();
   }
 
+  setSelectedDate(selectedDate) {
+    if (selectedDate && this.dateReg.test(selectedDate)) {
+      this.selectedDate = this.dateTimeFormatterService.convertDateFormatToBackend(selectedDate);
+      console.log(this.selectedDate);
+    }
+  }
 }

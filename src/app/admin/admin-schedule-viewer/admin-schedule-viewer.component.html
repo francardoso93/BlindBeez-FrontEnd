@@ -31,7 +31,7 @@
         <br>
         <div class="row">
           <div class="col-md-6 col-xs-12">
-            <app-date-selector></app-date-selector>
+            <app-date-selector (onDateChanged)="setSelectedDate($event)"></app-date-selector>
           </div>
         </div>
         <br>
