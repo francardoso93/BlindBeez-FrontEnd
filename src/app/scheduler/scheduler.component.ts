@@ -26,7 +26,7 @@ export class SchedulerComponent implements OnInit {
   availableCompanies: Observable<Company[]>;
   times: Schedule[];
 
-  dateReg: RegExp = environment.dateReg;  
+  dateReg: RegExp = environment.dateReg;
   dateMask = environment.dateMask;
 
 
@@ -85,7 +85,7 @@ export class SchedulerComponent implements OnInit {
     });
   }
 
-  async submitForm(clientScheduleFormValue: any) {     
+  async submitForm(clientScheduleFormValue: any) {
     this.submitted = true;
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
@@ -97,7 +97,7 @@ export class SchedulerComponent implements OnInit {
         phone: clientScheduleFormValue.phone,
         scheduleId: parseInt(clientScheduleFormValue.scheduleId),
       }
-      console.log(clientScheduler); 
+      console.log(clientScheduler);
       await this.schedulerService.postReservedSchedule(clientScheduler).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');

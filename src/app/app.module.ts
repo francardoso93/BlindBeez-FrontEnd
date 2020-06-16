@@ -25,7 +25,6 @@ import { AdminNewCompanyComponent } from './admin/admin-new-company/admin-new-co
   ],
   declarations: [
     AppComponent,
-    AdminNewCompanyComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

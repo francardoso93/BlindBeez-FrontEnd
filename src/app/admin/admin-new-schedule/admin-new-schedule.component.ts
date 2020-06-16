@@ -31,7 +31,7 @@ export class AdminNewScheduleComponent implements OnInit {
     private newScheduleService: AdminNewScheduleService,
     private dateTimeFormatterService: DateTimeFormatterService,
     private submitResultService: SubmitResultService,
-    private router: Router, ) { }
+    private router: Router,) { }
 
   ngOnInit() {
     this.getCompanies();
@@ -83,8 +83,12 @@ export class AdminNewScheduleComponent implements OnInit {
           id: newScheduleFormValue.companyId,
           name: undefined
         },
-        initialDate: this.dateTimeFormatterService.convertDateFormatToBackend(newScheduleFormValue.initialDate) + 'T' + newScheduleFormValue.initialTime + ':00',
-        finalDate: this.dateTimeFormatterService.convertDateFormatToBackend(newScheduleFormValue.finalDate) + 'T' + newScheduleFormValue.finalTime + ':00',
+        initialDate:
+          this.dateTimeFormatterService.convertDateFormatToBackend(newScheduleFormValue.initialDate) +
+          'T' + newScheduleFormValue.initialTime + ':00',
+        finalDate:
+          this.dateTimeFormatterService.convertDateFormatToBackend(newScheduleFormValue.finalDate) +
+          'T' + newScheduleFormValue.finalTime + ':00',
         minuteInterval: newScheduleFormValue.minuteInterval,
       }
       console.log(newSchedules);

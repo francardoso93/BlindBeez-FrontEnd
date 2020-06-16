@@ -10,9 +10,16 @@ import { TextMaskModule } from 'angular2-text-mask';
 import { CoreModule } from '../core/core.module';
 import { DateSelectorComponent } from './admin-schedule-viewer/date-selector/date-selector.component';
 import { RouterModule } from '@angular/router';
+import { AdminNewCompanyComponent } from './admin-new-company/admin-new-company.component';
 
 @NgModule({
-  declarations: [AdminScheduleViewerComponent, AdminNewScheduleComponent, CalendarTableComponent, AdminComponent, DateSelectorComponent],
+  declarations: [
+    AdminScheduleViewerComponent,
+    AdminNewScheduleComponent,
+    AdminNewCompanyComponent, CalendarTableComponent,
+    AdminComponent,
+    DateSelectorComponent,
+  ],
   imports: [
     CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule, RouterModule
   ]

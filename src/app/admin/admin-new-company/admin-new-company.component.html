@@ -1,3 +1,65 @@
-<p>
-  admin-new-company works!
-</p>
+<div class="contact-form">
+  <div class="container">
+    <section class="padding_t_40 padding_b_50">
+      <article class="container" aria-label="Cadastro de novas empresas">
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="title_page">Nova Empresa</h2>
+          </div>
+        </div>
+        <!-- ** TODO: Component -->
+        <ng-container *ngIf="!showMessage">
+          <div class="panel-default">
+            <div id="error-bucket" class="panel-body error-notice panel panel-danger"
+              *ngIf="!companyForm.valid && submitted">
+              <div class="panel-heading">
+                <h3 id="error-heading" class="panel-title" tabindex="-1">
+                  <span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
+                  Só um minutinho, encontramos alguns erros nas suas informações
+                </h3>
+              </div>
+              <div class="card-body">
+                <ul id="error-list" class="error-list">
+                  <li *ngIf="
+                      companyForm.controls['name'].hasError('required')
+                    ">
+                    <a href="/admin/empresas/novo#name">É obrigatório informar o nome da empresa.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <!-- ** -->
+
+        <!-- ** TODO: Component -->
+        <form [formGroup]="companyForm" (ngSubmit)="submitForm(companyForm.value)"> 
+          <div class="form-group" [ngClass]="{
+            'has-error':
+              !companyForm.controls['name'].valid && submitted
+          }">
+            <label for="name">
+              <span class="visuallyhidden">Nome da Empresa</span>
+              <input id="name" class="form-control" type="text" [formControl]="companyForm.controls['name']"
+                placeholder="Nome da Empresa" />
+              <div *ngIf="
+                companyForm.controls['name'].hasError(
+                  'required'
+                ) && submitted
+              " class="alert alert-danger">
+                É obrigatório informar o nome da empresa.
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="btn btn_blue medium">
+              Confirmar
+            </button>
+          </div>
+        </form>
+        <!-- ** -->
+      </article>
+    </section>
+  </div>
+</div>
