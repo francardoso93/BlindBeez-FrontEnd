@@ -89,6 +89,7 @@ export class SchedulerComponent implements OnInit {
     this.submitted = true;
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
+
       const clientScheduler: ClientScheduler = {
         name: clientScheduleFormValue.name,
         companyId: parseInt(clientScheduleFormValue.companyId),
@@ -108,9 +109,11 @@ export class SchedulerComponent implements OnInit {
         this.router.navigate(['agendamento/resposta']);
       });
     } else {
-      const errorHeading: HTMLElement =
-        document.querySelector('#error-heading');
-      errorHeading.focus();
+      setTimeout(() => {
+        const errorHeading: HTMLElement =
+          document.querySelector('#error-heading');
+        errorHeading.focus();
+      }, 1500)
     }
   }
 }
