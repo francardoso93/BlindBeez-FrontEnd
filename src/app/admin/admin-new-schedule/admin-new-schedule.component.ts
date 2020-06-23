@@ -102,9 +102,11 @@ export class AdminNewScheduleComponent implements OnInit {
         this.router.navigate(['/admin/agenda/novo/resposta']);
       });
     } else {
-      const errorHeading: HTMLElement =
-        document.querySelector('#error-heading');
-      errorHeading.focus();
+      setTimeout(() => {
+        const errorHeading: HTMLElement =
+          document.querySelector('#error-heading');
+        errorHeading.focus();
+      }, environment.validationErrorTimeout);
     }
   };
 }

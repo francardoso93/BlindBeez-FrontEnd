@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubmitResultService } from 'src/app/core/submit-result/submit-result.service';
 import { Router } from '@angular/router';
 import { AdminNewCompanyService } from './admin-new-company.service';
-import { Company } from 'src/app/scheduler/company';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-admin-new-company',
@@ -42,9 +42,11 @@ export class AdminNewCompanyComponent implements OnInit {
         this.router.navigate(['admin/empresas/novo/resposta']);
       });
     } else {
-      const errorHeading: HTMLElement =
-        document.querySelector('#error-heading');
-      errorHeading.focus();
+      setTimeout(() => {
+        const errorHeading: HTMLElement =
+          document.querySelector('#error-heading');
+        errorHeading.focus();
+      }, environment.validationErrorTimeout);
     }
   }
 

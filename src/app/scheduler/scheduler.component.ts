@@ -113,7 +113,7 @@ export class SchedulerComponent implements OnInit {
         const errorHeading: HTMLElement =
           document.querySelector('#error-heading');
         errorHeading.focus();
-      }, 1500)
+      }, environment.validationErrorTimeout)
     }
   }
 }
