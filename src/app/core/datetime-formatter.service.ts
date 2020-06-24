@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class DateTimeFormatterService {
-    public convertDateFormatToBackend(date: string) {
+    public convertDateFormatToBackend(date: string) { // yyyy-mm-dd
         let spliter = this.getDateFormatSpliter(date);
         if (spliter) {
             var re = new RegExp(spliter, "g");
@@ -13,6 +13,12 @@ export class DateTimeFormatterService {
             return date;
         }
     }
+
+    public convertDateFormatToFrontend(date: Date) { // dd/mm/yyyy
+        const day = this.addZeroToTheLeftIfNeeded(date.getDate().toString());
+        const month = this.addZeroToTheLeftIfNeeded((date.getMonth() + 1).toString());
+        return day + '/' + month + '/' + date.getFullYear();
+    }    
 
     private getDateFormatSpliter(date: string) {
         let spliter;
@@ -26,5 +32,9 @@ export class DateTimeFormatterService {
             spliter = "-";
         }
         return spliter;
+    }
+
+    private addZeroToTheLeftIfNeeded(stringToFix: string) {
+        return stringToFix.length === 2 ? stringToFix : 0 + stringToFix;
     }
 }

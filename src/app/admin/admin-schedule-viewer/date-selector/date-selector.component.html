@@ -1,10 +1,10 @@
 <nav aria-label="Navegação entre datas filtro">
   <ul class="pagination">
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Dia anterior">
+      <button class="page-link" href="#" aria-label="Dia anterior" (click)=oneDayBefore()>
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Anterior</span>
-      </a>
+      </button>
     </li>
     <li class="page-item" id="date-filter-li"><label for="initialDate">
       <span class="visuallyhidden">Data filtro</span>
@@ -14,10 +14,10 @@
         [(ngModel)]="initialDate" />
     </label></li>
     <li class="page-item">
-      <a class="page-link" href="#" aria-label="Proximo dia">
+      <button class="page-link" href="#" aria-label="Proximo dia" (click)=nextDay()>
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Próximo</span>
-      </a>
+      </button>
     </li>
   </ul>
 </nav>
