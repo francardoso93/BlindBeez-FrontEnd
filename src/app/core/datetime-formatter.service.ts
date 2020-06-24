@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DateTimeFormatterService {
+    dateReg: RegExp = environment.dateReg;
     public convertDateFormatToBackend(date: string) { // yyyy-mm-dd
         let spliter = this.getDateFormatSpliter(date);
         if (spliter) {
-            var re = new RegExp(spliter, "g");
+            var re = new RegExp(spliter, 'g');
             return (date.split(spliter).reverse().join(spliter)).replace(re, '-');
         } else {
             return date;
@@ -18,18 +20,18 @@ export class DateTimeFormatterService {
         const day = this.addZeroToTheLeftIfNeeded(date.getDate().toString());
         const month = this.addZeroToTheLeftIfNeeded((date.getMonth() + 1).toString());
         return day + '/' + month + '/' + date.getFullYear();
-    }    
+    }
 
     private getDateFormatSpliter(date: string) {
         let spliter;
-        if (date.includes("/")) {
-            spliter = "/";
+        if (date.includes('/')) {
+            spliter = '/';
         }
-        else if (date.includes(".")) {
-            spliter = ".";
+        else if (date.includes('.')) {
+            spliter = '.';
         }
-        else if (date.includes("-")) {
-            spliter = "-";
+        else if (date.includes('-')) {
+            spliter = '-';
         }
         return spliter;
     }

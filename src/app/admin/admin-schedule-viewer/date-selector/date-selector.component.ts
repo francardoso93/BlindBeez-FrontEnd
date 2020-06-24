@@ -26,11 +26,18 @@ export class DateSelectorComponent implements OnInit {
     this.dateControlClicked('+');
   }
 
-  private dateControlClicked(operator: string){
+  onDateChange() {
+    if (this.initialDate && this.dateReg.test(this.initialDate)) {
+      this.onDateChanged.emit(this.dateTimeFormatterService.convertDateFormatToBackend(this.initialDate));
+    }
+  }
+
+  private dateControlClicked(operator: string) {
     if (this.initialDate) {
       const currentDate: Date = this.getCurrentDate();
-      currentDate.setDate(operator === '+' ? currentDate.getDate() +1 : currentDate.getDate() -1);
+      currentDate.setDate(operator === '+' ? currentDate.getDate() + 1 : currentDate.getDate() - 1);
       this.initialDate = this.dateTimeFormatterService.convertDateFormatToFrontend(currentDate);
+      this.onDateChange();
     }
 
   }

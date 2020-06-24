@@ -9,7 +9,7 @@
     <li class="page-item" id="date-filter-li"><label for="initialDate">
       <span class="visuallyhidden">Data filtro</span>
       <input id="initialDate" class="form-control" type="text" placeholder="Data Filtro"
-        (input)="onDateChanged.emit(initialDate)"
+        (input)="onDateChange()"
         [textMask]="{ mask: dateMask }"
         [(ngModel)]="initialDate" />
     </label></li>
