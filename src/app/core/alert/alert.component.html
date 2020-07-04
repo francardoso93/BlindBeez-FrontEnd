@@ -1,0 +1,45 @@
+<!-- https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/alertdialog.html -->
+
+<button
+  type="button"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#alertModal"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="alertModal"
+  tabindex="-1"
+  role="alertdialog"
+  aria-modal="true"
+  aria-labelledby="alertModalLabel"
+  aria-describedby="alertModalDesc"
+  aria-hidden="true"
+> <!-- Esse aria-hidden veio do template do bootstrap. Será que tá correto / precisa dele? -->
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="alertModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body" id="alertModalDesc">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
