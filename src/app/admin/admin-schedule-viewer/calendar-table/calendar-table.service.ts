@@ -12,8 +12,10 @@ export class CalendarTableService {
   constructor(private http: HttpClient) { }
 
   listSchedules(date, companyId): Observable<Schedule[]> {
+    const initialDate: string = date + "T00:00:00";
+    const finalDate: string = date + "T23:59:59";
     return this.http.get<Schedule[]>(
-      environment.apiroot + environment.schedules + "?date=" + date + "&companyId=" + companyId,
+      environment.apiroot + environment.schedules + "?initialDate=" + initialDate  + "&finalDate=" + finalDate + "&companyId=" + companyId,
     );
   }
 }

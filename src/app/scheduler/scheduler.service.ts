@@ -22,7 +22,8 @@ export class SchedulerService {
   listSchedules(date: string, companyId: number, onlyAvailableTime: boolean): Observable<Schedule[]> {
     let params = new HttpParams();
     if (date) {
-      params = params.set('date', this.datimeTimeFormatter.convertDateFormatToBackend(date));
+      params = params.set('initialDate', this.datimeTimeFormatter.convertDateFormatToBackend(date) + 'T00:00:00');
+      params = params.set('finalDate', this.datimeTimeFormatter.convertDateFormatToBackend(date) +  'T23:59:59');
     }
     if (companyId) {
       params = params.set('companyId', companyId.toString());
