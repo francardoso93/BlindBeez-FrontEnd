@@ -8,6 +8,8 @@ import { NewSchedule } from "./admin-new-schedule";
 import { DateTimeFormatterService } from "src/app/core/datetime-formatter.service";
 import { AdminNewScheduleService } from "./admin-new-schedule.service";
 import { SubmitResultService } from "src/app/core/submit-result/submit-result.service";
+// declare var jQuery:any;
+import * as $AB from 'jquery';
 
 @Component({
   selector: "app-admin-new-schedule",
@@ -26,7 +28,7 @@ export class AdminNewScheduleComponent implements OnInit {
   dateMask = environment.dateMask;
   timeMask = environment.timeMask;
 
-  displayConfirmAlert: boolean = true;
+  displayConfirmAlert: boolean = false;
 
   constructor(
     public fb: FormBuilder,
@@ -77,20 +79,41 @@ export class AdminNewScheduleComponent implements OnInit {
     this.availableCompanies = this.newScheduleService.listCompanies();
   }
 
-  checkIfThereAreExistingSchedules() {
-    // TODO: Fazer um GET que traga uma lista considerando o periodo agendado
-    return true;
+  private async checkIfThereAreExistingSchedules(newSchedules: NewSchedule) {
+    const existingSchedules = await this.newScheduleService.listSchedules(newSchedules.initialDate, newSchedules.finalDate, newSchedules.company.id);
+    return await existingSchedules.length > 0;
   }
 
   async submitForm(newScheduleFormValue: any) {
     this.submitted = true;
     if (this.newScheduleForm.valid) {
-      // TODO: Validar se existe já existem agendas
-      if (this.checkIfThereAreExistingSchedules()) {        
-        this.displayConfirmAlert = true;
+      const newSchedules: NewSchedule = {
+        company: {
+          id: newScheduleFormValue.companyId,
+          name: undefined,
+        },
+        initialDate:
+          this.dateTimeFormatterService.convertDateFormatToBackend(
+            newScheduleFormValue.initialDate
+          ) +
+          "T" +
+          newScheduleFormValue.initialTime +
+          ":00",
+        finalDate:
+          this.dateTimeFormatterService.convertDateFormatToBackend(
+            newScheduleFormValue.finalDate
+          ) +
+          "T" +
+          newScheduleFormValue.finalTime +
+          ":00",
+        minuteInterval: newScheduleFormValue.minuteInterval,
+      };
+
+      if (await this.checkIfThereAreExistingSchedules(newSchedules)) {
+        $('#alertModal').modal('show');      
         // TODO: De alguma maneira esperar a confirmação do alert para chamar 'sendToBackend'. Provavelmente vai ser em uma outra função, que também chama a 'sendToBackend'
       } else {
-        this.displayConfirmAlert = false;
+        $('#alertModal').modal('hide');
         await this.sendToBackend(newScheduleFormValue);
       }
     } else {
@@ -103,30 +126,8 @@ export class AdminNewScheduleComponent implements OnInit {
     }
   }
 
-  private async sendToBackend(newScheduleFormValue: any) {
-    this.showMessage = true;
-    const newSchedules: NewSchedule = {
-      company: {
-        id: newScheduleFormValue.companyId,
-        name: undefined,
-      },
-      initialDate:
-        this.dateTimeFormatterService.convertDateFormatToBackend(
-          newScheduleFormValue.initialDate
-        ) +
-        "T" +
-        newScheduleFormValue.initialTime +
-        ":00",
-      finalDate:
-        this.dateTimeFormatterService.convertDateFormatToBackend(
-          newScheduleFormValue.finalDate
-        ) +
-        "T" +
-        newScheduleFormValue.finalTime +
-        ":00",
-      minuteInterval: newScheduleFormValue.minuteInterval,
-    };
-    console.log(newSchedules);
+  private async sendToBackend(newSchedules: NewSchedule) {
+    this.showMessage = true; // TODO: Pra que serve isso msm ???    
     await this.newScheduleService
       .postAvailableSchedules(newSchedules)
       .subscribe(

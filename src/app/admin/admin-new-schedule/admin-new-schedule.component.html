@@ -374,7 +374,6 @@
             <button
               type="submit"
               class="btn btn_blue medium"
-              data-toggle="modal"
               data-target="#alertModal"
               data-backdrop="static"
             >
@@ -389,7 +388,6 @@
 </div>
 
 <app-alert
-  *ngIf="displayConfirmAlert"
   title="Atenção!"
   description="Cuidado com essa operação! Já existem agendas para o periodo selecionado. Se prosseguir, todas as agendas existentes nesse período serão substituidas pelas novas. Uma opção mais segura é a de excluir manualmente as agendas antes de efetuar esse cadastro. Tem certeza que deseja continuar?"
 ></app-alert>
