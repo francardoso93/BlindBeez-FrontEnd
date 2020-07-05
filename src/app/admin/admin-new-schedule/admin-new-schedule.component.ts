@@ -26,6 +26,8 @@ export class AdminNewScheduleComponent implements OnInit {
   dateMask = environment.dateMask;
   timeMask = environment.timeMask;
 
+  displayConfirmAlert: boolean = true;
+
   constructor(
     public fb: FormBuilder,
     private newScheduleService: AdminNewScheduleService,
