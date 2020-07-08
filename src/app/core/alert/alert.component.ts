@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-alert",
@@ -6,10 +6,15 @@ import { Component, OnInit, Input } from "@angular/core";
   styleUrls: ["./alert.component.css"],
 })
 export class AlertComponent implements OnInit {
-  @Input() title;
-  @Input() description;
+  @Input() title: string;
+  @Input() description: string;
+  @Output() confirmationPressed: EventEmitter<void> = new EventEmitter();;
 
   constructor() {}
 
   ngOnInit() {}
+
+  onConfirmationPressed() {
+    this.confirmationPressed.emit();
+  }
 }

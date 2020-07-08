@@ -8,8 +8,10 @@ import { NewSchedule } from "./admin-new-schedule";
 import { DateTimeFormatterService } from "src/app/core/datetime-formatter.service";
 import { AdminNewScheduleService } from "./admin-new-schedule.service";
 import { SubmitResultService } from "src/app/core/submit-result/submit-result.service";
-// declare var jQuery:any;
-import * as $AB from 'jquery';
+// Those 3 imports are needed for handling #alertModal
+declare var jQuery:any;
+import * as bootstrap from "bootstrap";
+import * as $AB from "jquery";
 
 @Component({
   selector: "app-admin-new-schedule",
@@ -29,6 +31,8 @@ export class AdminNewScheduleComponent implements OnInit {
   timeMask = environment.timeMask;
 
   displayConfirmAlert: boolean = false;
+
+  private _newScheduleFormValue;
 
   constructor(
     public fb: FormBuilder,
@@ -80,8 +84,12 @@ export class AdminNewScheduleComponent implements OnInit {
   }
 
   private async checkIfThereAreExistingSchedules(newSchedules: NewSchedule) {
-    const existingSchedules = await this.newScheduleService.listSchedules(newSchedules.initialDate, newSchedules.finalDate, newSchedules.company.id);
-    return await existingSchedules.length > 0;
+    const existingSchedules = await this.newScheduleService.listSchedules(
+      newSchedules.initialDate,
+      newSchedules.finalDate,
+      newSchedules.company.id
+    );
+    return (await existingSchedules.length) > 0;
   }
 
   async submitForm(newScheduleFormValue: any) {
@@ -110,10 +118,10 @@ export class AdminNewScheduleComponent implements OnInit {
       };
 
       if (await this.checkIfThereAreExistingSchedules(newSchedules)) {
-        $('#alertModal').modal('show');      
-        // TODO: De alguma maneira esperar a confirmação do alert para chamar 'sendToBackend'. Provavelmente vai ser em uma outra função, que também chama a 'sendToBackend'
+        $("#alertModal").modal("show");
+        this._newScheduleFormValue = newScheduleFormValue; // must be shared globally, so the alert 'confirm' button can use it
       } else {
-        $('#alertModal').modal('hide');
+        $("#alertModal").modal("hide");
         await this.sendToBackend(newScheduleFormValue);
       }
     } else {
@@ -127,7 +135,7 @@ export class AdminNewScheduleComponent implements OnInit {
   }
 
   private async sendToBackend(newSchedules: NewSchedule) {
-    this.showMessage = true; // TODO: Pra que serve isso msm ???    
+    this.showMessage = true; // TODO: Pra que serve isso msm ???
     await this.newScheduleService
       .postAvailableSchedules(newSchedules)
       .subscribe(
@@ -136,6 +144,7 @@ export class AdminNewScheduleComponent implements OnInit {
             "Agendas criadas com sucesso!",
             "Essas sessões já estão disponíveis para reserva!"
           );
+          this._newScheduleFormValue = null;
           this.router.navigate(["/admin/agenda/novo/resposta"]);
         },
         () => {
@@ -143,6 +152,7 @@ export class AdminNewScheduleComponent implements OnInit {
             "Erro",
             "O sistema não foi capaz de criar essas novas sessões"
           );
+          this._newScheduleFormValue = null;
           this.router.navigate(["/admin/agenda/novo/resposta"]);
         }
       );
