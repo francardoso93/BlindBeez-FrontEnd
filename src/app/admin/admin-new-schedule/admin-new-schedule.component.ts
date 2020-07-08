@@ -32,7 +32,7 @@ export class AdminNewScheduleComponent implements OnInit {
 
   displayConfirmAlert: boolean = false;
 
-  private _newScheduleFormValue;
+  private _newSchedules;
 
   constructor(
     public fb: FormBuilder,
@@ -119,10 +119,10 @@ export class AdminNewScheduleComponent implements OnInit {
 
       if (await this.checkIfThereAreExistingSchedules(newSchedules)) {
         $("#alertModal").modal("show");
-        this._newScheduleFormValue = newScheduleFormValue; // must be shared globally, so the alert 'confirm' button can use it
+        this._newSchedules = newSchedules; // must be shared globally, so the alert 'confirm' button can use it
       } else {
         $("#alertModal").modal("hide");
-        await this.sendToBackend(newScheduleFormValue);
+        await this.sendToBackend(newSchedules);
       }
     } else {
       setTimeout(() => {
@@ -144,7 +144,7 @@ export class AdminNewScheduleComponent implements OnInit {
             "Agendas criadas com sucesso!",
             "Essas sessões já estão disponíveis para reserva!"
           );
-          this._newScheduleFormValue = null;
+          this._newSchedules = null;
           this.router.navigate(["/admin/agenda/novo/resposta"]);
         },
         () => {
@@ -152,7 +152,7 @@ export class AdminNewScheduleComponent implements OnInit {
             "Erro",
             "O sistema não foi capaz de criar essas novas sessões"
           );
-          this._newScheduleFormValue = null;
+          this._newSchedules = null;
           this.router.navigate(["/admin/agenda/novo/resposta"]);
         }
       );
