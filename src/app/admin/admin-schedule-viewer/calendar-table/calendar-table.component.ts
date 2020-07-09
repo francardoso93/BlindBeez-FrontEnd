@@ -29,4 +29,11 @@ export class CalendarTableComponent implements OnInit, OnChanges {
       this.scheduleList = this.calendarTableService.listSchedules(this.date, this.companyId);
     }
   }
+
+  deleteSchedule(scheduleId: string) {
+    console.log("Delete schedule!");
+    console.log(scheduleId);
+    this.calendarTableService.deleteSchedule(scheduleId, this.getSchedules.bind(this));
+    ;
+  }    
 }
