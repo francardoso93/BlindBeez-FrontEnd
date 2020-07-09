@@ -25,9 +25,16 @@ export class CalendarTableService {
     );
   }
 
+  updateSchedule(schedule: Schedule, callback: Function) {
+    this.http
+      .put(
+        environment.apiroot + environment.schedules + "/" + schedule.id,
+        schedule
+      )
+      .subscribe(() => this.refreshScheduleList(callback));
+  }
+
   deleteSchedule(scheduleId: string, callback: Function) {
-    const url = environment.apiroot + environment.schedules + "/" + scheduleId;
-    console.log(url);
     this.http
       .delete(environment.apiroot + environment.schedules + "/" + scheduleId)
       .subscribe(() => this.refreshScheduleList(callback));

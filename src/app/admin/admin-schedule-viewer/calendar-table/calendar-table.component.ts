@@ -36,4 +36,10 @@ export class CalendarTableComponent implements OnInit, OnChanges {
     this.calendarTableService.deleteSchedule(scheduleId, this.getSchedules.bind(this));
     ;
   }    
+
+  cancelReservedSchedule(schedule: Schedule) {
+    schedule.reserved = false;
+    schedule.client = null;
+    this.calendarTableService.updateSchedule(schedule, this.getSchedules.bind(this))
+  }
 }
