@@ -1,5 +1,8 @@
 <table class="table" *ngIf="date && companyId">
-  <caption> Agenda com informações de horário, cliente, telefone e ações de cancelamento ou deleção. Pode estar sem valores preenchidos caso não exista horários disponíveis ou agendados para essa data
+  <caption>
+    Agenda com informações de horário, cliente, telefone e ações de cancelamento
+    ou deleção. Pode estar sem valores preenchidos caso não exista horários
+    disponíveis ou agendados para essa data
   </caption>
   <tr>
     <th scope="col">Horário</th>
@@ -8,9 +11,19 @@
     <th scope="col">Ações</th>
   </tr>
   <tr *ngFor="let schedule of scheduleList | async">
-    <td scope="row">{{schedule.time}}</td>
-    <td>{{schedule.client?.name}}</td>
-    <td>{{schedule.client?.phone}}</td>
-    <td>Botão</td>
+    <td scope="row">{{ schedule.time }}</td>
+    <td>{{ schedule.client?.name }}</td>
+    <td>{{ schedule.client?.phone }}</td>
+    <td>
+      <button
+        type="button"
+        class="btn btn-secondary"
+        aria-label="Deletar agenda disponível"
+        (click)="onDeleteSchedule()"
+      >
+      <!-- Substituir pelo FA correto -->
+        <span class="fa fa-trash" aria-hidden="true"></span>
+      </button>
+    </td>
   </tr>
 </table>
