@@ -345,7 +345,10 @@
                 !newScheduleForm.controls['initialTime'].valid && submitted
             }"
           >
-            <label for="minuteInterval">              
+            <label for="minuteInterval">
+              <span class="visuallyhidden"
+                >Tempo de cada sessão (minutos)
+              </span>
               <input
                 id="minuteInterval"
                 class="form-control"
@@ -374,6 +377,7 @@
               data-target="#alertModal"
               data-backdrop="static"
             >
+              Confirmar
             </button>
           </div>
         </form>
