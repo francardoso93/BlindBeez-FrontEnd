@@ -33,7 +33,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should be no accessibility issues', done => {
+  it('should be totally accessible for blind people', done => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;

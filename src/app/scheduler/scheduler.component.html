@@ -80,6 +80,7 @@
                     !clientScheduleForm.controls['name'].valid && submitted
                 }">
             <label for="name">
+              <span class="visuallyhidden">Seu Nome (Obrigatório para Agendamento)</span>
               <input id="name" class="form-control" type="text" [formControl]="clientScheduleForm.controls['name']"
                 [(ngModel)]="client.name" placeholder="Seu Nome" />
               <div *ngIf="

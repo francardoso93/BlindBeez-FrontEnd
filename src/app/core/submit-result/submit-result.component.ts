@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./submit-result.component.css']
 })
 export class SubmitResultComponent implements OnInit {
-  header: string;
-  body: string;
+  header: string = 'Ops! Página incorreta';
+  body: string = 'Não temos resultado de nenhuma operação solicitada para mostrar aqui';
 
   constructor(
     private router: Router,

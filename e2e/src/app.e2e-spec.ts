@@ -8,17 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  // **** Navegar para todas as páginas, para que o teste de acessibilidade seja executado em todas essas
-  it('should HomePage welcome message', () => {
-    page.navigateTo(); //TODO: String vazia
-    expect(page.getTitleText()).toEqual('BlindBeez');
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('Welcome to scheduler-blind-beez!');
   });
-
-  it('should Scheduler welcome message', () => {
-    page.navigateTo('/agendamento')
-    expect(page.getTitleText()).toEqual('AGENDE SUA QUICK MASSAGE');
-  });
-  // ****
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

@@ -1,11 +1,10 @@
 import { TestBed, async } from '@angular/core/testing';
 import * as axe from 'axe-core';
-import { AdminScheduleViewerComponent } from '../admin-schedule-viewer/admin-schedule-viewer.component';
-import { AdminNewScheduleComponent } from './admin-new-schedule.component';
+import { AdminScheduleViewerComponent } from './admin-schedule-viewer.component';
 import { AdminNewCompanyComponent } from '../admin-new-company/admin-new-company.component';
-import { CalendarTableComponent } from '../admin-schedule-viewer/calendar-table/calendar-table.component';
+import { CalendarTableComponent } from './calendar-table/calendar-table.component';
 import { AdminComponent } from '../admin.component';
-import { DateSelectorComponent } from '../admin-schedule-viewer/date-selector/date-selector.component';
+import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { CommonModule } from '@angular/common';
 import { SchedulerModule } from 'src/app/scheduler/scheduler.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,7 +13,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 
-describe('AdminNewScheduleComponent', () => {
+describe('AdminScheduleViewerComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -22,7 +21,6 @@ describe('AdminNewScheduleComponent', () => {
       ],
       declarations: [
         AdminScheduleViewerComponent,
-        AdminNewScheduleComponent,
         AdminNewCompanyComponent, CalendarTableComponent,
         AdminComponent,
         DateSelectorComponent,
@@ -31,13 +29,13 @@ describe('AdminNewScheduleComponent', () => {
   }));
 
   it('should create the component', () => {
-    const fixture = TestBed.createComponent(AdminNewScheduleComponent);
+    const fixture = TestBed.createComponent(AdminScheduleViewerComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it('should be totally accessible for blind people', done => {
-    const fixture = TestBed.createComponent(AdminNewScheduleComponent);
+    const fixture = TestBed.createComponent(AdminScheduleViewerComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
 
