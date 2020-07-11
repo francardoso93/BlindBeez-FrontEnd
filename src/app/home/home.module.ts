@@ -13,7 +13,7 @@ import { BannerComponent } from './banner/banner.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
   exports: [HomeComponent]
 })

@@ -15,7 +15,7 @@ import { CoreModule } from '../core/core.module';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
     TextMaskModule,
     RouterModule,
     HttpClientModule,

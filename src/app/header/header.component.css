@@ -15,12 +15,12 @@
   max-width: 70;
 }
 
-#header .menu_main ul li button.item {
+ul li button.item {
   display: block;
   text-transform: uppercase;
-  color: #646464;
-  background-color: #fff;
+  color: #0c3e77;
   font-size: 14px;
+  font-weight: bold;
   padding: 6px 10px;
   border-radius: 3px;
 }
