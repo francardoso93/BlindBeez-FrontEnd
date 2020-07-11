@@ -6,8 +6,9 @@ import { Company } from './company';
 import { Client } from './client';
 import { Router } from '@angular/router';
 import { SchedulerService } from './scheduler.service';
-import { SubmitResultService } from './submit-result/submit-result.service';
+import { SubmitResultService } from '../core/submit-result/submit-result.service';
 import { ClientScheduler } from './client.scheduler';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-scheduler',
@@ -25,20 +26,8 @@ export class SchedulerComponent implements OnInit {
   availableCompanies: Observable<Company[]>;
   times: Schedule[];
 
-  dateReg: RegExp = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-
-  public datemask = [
-    /[0-3]/,
-    /[0-9]/,
-    '/',
-    /[0-1]/,
-    /[0-9]/,
-    '/',
-    /[1-2]/,
-    /[0-9]/,
-    /[0-9]/,
-    /[0-9]/
-  ];
+  dateReg: RegExp = environment.dateReg;
+  dateMask = environment.dateMask;
 
 
   constructor(
@@ -97,9 +86,7 @@ export class SchedulerComponent implements OnInit {
   }
 
   async submitForm(clientScheduleFormValue: any) {
-    
     this.submitted = true;
-
     if (this.clientScheduleForm.valid) {
       this.showMessage = true;
 
@@ -115,18 +102,18 @@ export class SchedulerComponent implements OnInit {
       await this.schedulerService.postReservedSchedule(clientScheduler).subscribe(() => {
         this.submitResultService
           .setResultSubmitResultText('Agendamento realizado com sucesso!', 'Essa sessão foi reservada para você, até já!');
-        this.router.navigate(['/resposta']);
+        this.router.navigate(['agendamento/resposta']);
       }, () => {
         this.submitResultService
           .setResultSubmitResultText('Erro', 'Não foi possível realizar seu agendamento. Favor nos avisar em contato@blindbeez.com.br');
-        this.router.navigate(['/resposta']);
+        this.router.navigate(['agendamento/resposta']);
       });
     } else {
       setTimeout(() => {
         const errorHeading: HTMLElement =
           document.querySelector('#error-heading');
         errorHeading.focus();
-      }, 1500)
+      }, environment.validationErrorTimeout)
     }
   }
 }

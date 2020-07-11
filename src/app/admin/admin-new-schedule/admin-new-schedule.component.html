@@ -1,0 +1,394 @@
+<div class="contact-form">
+  <div class="container">
+    <section class="padding_t_40 padding_b_50">
+      <article
+        class="container"
+        aria-label="Cadastro de novos períodos de agendamento"
+      >
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="title_page">Novo periodo para agendamento</h2>
+          </div>
+        </div>
+        <!-- ** TODO: Component -->
+        <ng-container *ngIf="!showMessage">
+          <div class="panel-default">
+            <div
+              id="error-bucket"
+              class="panel-body error-notice panel panel-danger"
+              *ngIf="!newScheduleForm.valid && submitted"
+            >
+              <div class="panel-heading">
+                <h3 id="error-heading" class="panel-title" tabindex="-1">
+                  <span
+                    class="glyphicon glyphicon-warning-sign"
+                    aria-hidden="true"
+                  ></span>
+                  Só um minutinho, encontramos alguns erros nas suas informações
+                </h3>
+              </div>
+              <div class="card-body">
+                <ul id="error-list" class="error-list">
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['companyId'].hasError('required')
+                    "
+                  >
+                    <a href="/admin/agenda/novo#companyId"
+                      >É obrigatório informar a sua empresa.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['initialDate'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    <a href="/admin/agenda/novo#initialDate"
+                      >É obrigatório informar a data inicial.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['initialDate'].hasError(
+                        'pattern'
+                      )
+                    "
+                  >
+                    <a href="/admin/agenda/novo#initialDate"
+                      >Formato de data inválido (DD/MM/YYYY) ou data não
+                      existe.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['finalDate'].hasError('required')
+                    "
+                  >
+                    <a href="/admin/agenda/novo#finalDate"
+                      >É obrigatório informar a data final.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['finalDate'].hasError('pattern')
+                    "
+                  >
+                    <a href="/admin/agenda/novo#finalDate"
+                      >Formato de data inválido (DD/MM/YYYY) ou data não
+                      existe.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['initialTime'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    <a href="/admin/agenda/novo#initialTime"
+                      >É obrigatório informar o horário inicial.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['initialTime'].hasError(
+                        'pattern'
+                      )
+                    "
+                  >
+                    <a href="/admin/agenda/novo#initialTime"
+                      >Formato de tempo inválido (HH:MM) ou data não existe.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['finalTime'].hasError('required')
+                    "
+                  >
+                    <a href="/admin/agenda/novo#finalTime"
+                      >É obrigatório informar o horário final.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['finalTime'].hasError('pattern')
+                    "
+                  >
+                    <a href="/admin/agenda/novo#finalTime"
+                      >Formato de tempo inválido (HH:MM) ou data não existe.</a
+                    >
+                  </li>
+                  <li
+                    *ngIf="
+                      newScheduleForm.controls['minuteInterval'].hasError(
+                        'required'
+                      )
+                    "
+                  >
+                    <a href="/admin/agenda/novo#minuteInterval"
+                      >É obrigatório informar o Tempo de cada sessão.</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <!-- ** -->
+
+        <!-- ** TODO: Component -->
+        <form
+          [formGroup]="newScheduleForm"
+          (ngSubmit)="submitForm(newScheduleForm.value)"
+        >
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['companyId'].valid && submitted
+            }"
+          >
+            <label for="companyId">
+              <span class="visuallyhidden"
+                >Empresa (Obrigatório para Agendamento)</span
+              >
+              <select
+                id="companyId"
+                class="form-control"
+                [formControl]="newScheduleForm.controls['companyId']"
+                [(ngModel)]="companyId"
+              >
+                <option value="undefined" disabled>Empresa</option>
+                <option
+                  *ngFor="let opt of availableCompanies | async"
+                  [value]="opt.id"
+                >
+                  {{ opt.name }}</option
+                >
+              </select>
+              <div
+                *ngIf="
+                  newScheduleForm.controls['companyId'].hasError('required') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar a sua empresa.
+              </div>
+            </label>
+          </div>
+
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['initialDate'].valid && submitted
+            }"
+          >
+            <label for="initialDate">
+              <span class="visuallyhidden">Data Inicial</span>
+              <input
+                id="initialDate"
+                class="form-control"
+                type="text"
+                placeholder="Data Inicial"
+                [formControl]="newScheduleForm.controls['initialDate']"
+                [textMask]="{ mask: dateMask }"
+                [(ngModel)]="initialDate"
+              />
+              <div
+                *ngIf="
+                  newScheduleForm.controls['initialDate'].hasError(
+                    'required'
+                  ) && submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar uma data incial.
+              </div>
+              <div
+                *ngIf="
+                  newScheduleForm.controls['initialDate'].hasError('pattern') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                Formato de data inválido (DD/MM/YYYY) ou data não existe.
+              </div>
+            </label>
+          </div>
+
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['finalDate'].valid && submitted
+            }"
+          >
+            <label for="finalDate">
+              <span class="visuallyhidden">Data Final</span>
+              <input
+                id="finalDate"
+                class="form-control"
+                type="text"
+                placeholder="Data Final"
+                [formControl]="newScheduleForm.controls['finalDate']"
+                [textMask]="{ mask: dateMask }"
+                [(ngModel)]="finalDate"
+              />
+              <div
+                *ngIf="
+                  newScheduleForm.controls['finalDate'].hasError('required') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar uma data final.
+              </div>
+              <div
+                *ngIf="
+                  newScheduleForm.controls['finalDate'].hasError('pattern') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                Formato de data inválido (DD/MM/YYYY) ou data não existe.
+              </div>
+            </label>
+          </div>
+
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['initialTime'].valid && submitted
+            }"
+          >
+            <label for="initialTime">
+              <span class="visuallyhidden">Horário Inicial </span>
+              <input
+                id="initialTime"
+                class="form-control"
+                type="text"
+                [formControl]="newScheduleForm.controls['initialTime']"
+                [textMask]="{ mask: timeMask }"
+                [(ngModel)]="initialTime"
+                placeholder="Horário Inicial"
+              />
+              <div
+                *ngIf="
+                  newScheduleForm.controls['initialTime'].hasError(
+                    'required'
+                  ) && submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar o horário inicial.
+              </div>
+              <div
+                *ngIf="
+                  newScheduleForm.controls['initialTime'].hasError('pattern') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                Formato de tempo inválido (HH:MM) ou data não existe.
+              </div>
+            </label>
+          </div>
+
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['finalTime'].valid && submitted
+            }"
+          >
+            <label for="finalTime">
+              <span class="visuallyhidden">Horário final </span>
+              <input
+                id="finalTime"
+                class="form-control"
+                type="text"
+                [formControl]="newScheduleForm.controls['finalTime']"
+                [textMask]="{ mask: timeMask }"
+                [(ngModel)]="finalTime"
+                placeholder="Horário final"
+              />
+              <div
+                *ngIf="
+                  newScheduleForm.controls['finalTime'].hasError('required') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar o horário final.
+              </div>
+              <div
+                *ngIf="
+                  newScheduleForm.controls['finalTime'].hasError('pattern') &&
+                  submitted
+                "
+                class="alert alert-danger"
+              >
+                Formato de tempo inválido (HH:MM) ou data não existe.
+              </div>
+            </label>
+          </div>
+
+          <div
+            class="form-group"
+            [ngClass]="{
+              'has-error':
+                !newScheduleForm.controls['initialTime'].valid && submitted
+            }"
+          >
+            <label for="minuteInterval">
+              <span class="visuallyhidden"
+                >Tempo de cada sessão (minutos)
+              </span>
+              <input
+                id="minuteInterval"
+                class="form-control"
+                type="text"
+                [formControl]="newScheduleForm.controls['minuteInterval']"
+                [(ngModel)]="minuteInterval"
+                placeholder="Tempo de cada sessão (minutos)"
+              />
+              <div
+                *ngIf="
+                  newScheduleForm.controls['minuteInterval'].hasError(
+                    'required'
+                  ) && submitted
+                "
+                class="alert alert-danger"
+              >
+                É obrigatório informar o Tempo de cada sessão.
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn_blue medium"
+              data-target="#alertModal"
+              data-backdrop="static"
+            >
+              Confirmar
+            </button>
+          </div>
+        </form>
+        <!-- ** -->
+      </article>
+    </section>
+  </div>
+</div>
+
+<app-alert
+  title="Atenção!"
+  description="Cuidado com essa operação! Já existem agendas para o periodo selecionado. Se prosseguir, todas as agendas existentes nesse período serão substituidas pelas novas. Uma opção mais segura é a de excluir manualmente as agendas antes de efetuar esse cadastro. Tem certeza que deseja continuar?"
+  (confirmationPressed)=sendToBackend(_newSchedules)
+  ></app-alert>
