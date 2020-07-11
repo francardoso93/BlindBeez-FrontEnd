@@ -196,7 +196,6 @@
                 placeholder="Data Inicial"
                 [formControl]="newScheduleForm.controls['initialDate']"
                 [textMask]="{ mask: dateMask }"
-                [(ngModel)]="initialDate"
               />
               <div
                 *ngIf="
@@ -236,7 +235,6 @@
                 placeholder="Data Final"
                 [formControl]="newScheduleForm.controls['finalDate']"
                 [textMask]="{ mask: dateMask }"
-                [(ngModel)]="finalDate"
               />
               <div
                 *ngIf="
@@ -274,7 +272,6 @@
                 type="text"
                 [formControl]="newScheduleForm.controls['initialTime']"
                 [textMask]="{ mask: timeMask }"
-                [(ngModel)]="initialTime"
                 placeholder="Horário Inicial"
               />
               <div
@@ -314,7 +311,6 @@
                 type="text"
                 [formControl]="newScheduleForm.controls['finalTime']"
                 [textMask]="{ mask: timeMask }"
-                [(ngModel)]="finalTime"
                 placeholder="Horário final"
               />
               <div
@@ -354,7 +350,6 @@
                 class="form-control"
                 type="text"
                 [formControl]="newScheduleForm.controls['minuteInterval']"
-                [(ngModel)]="minuteInterval"
                 placeholder="Tempo de cada sessão (minutos)"
               />
               <div

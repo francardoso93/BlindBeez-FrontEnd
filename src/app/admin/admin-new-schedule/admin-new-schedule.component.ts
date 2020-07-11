@@ -32,7 +32,7 @@ export class AdminNewScheduleComponent implements OnInit {
 
   displayConfirmAlert: boolean = false;
 
-  private _newSchedules;
+  _newSchedules;
 
   constructor(
     public fb: FormBuilder,
@@ -134,7 +134,7 @@ export class AdminNewScheduleComponent implements OnInit {
     }
   }
 
-  private async sendToBackend(newSchedules: NewSchedule) {
+  async sendToBackend(newSchedules: NewSchedule) {
     this.showMessage = true; // TODO: Pra que serve isso msm ???
     await this.newScheduleService
       .postAvailableSchedules(newSchedules)
