@@ -21,7 +21,7 @@ import { AdminNewCompanyComponent } from './admin-new-company/admin-new-company.
     DateSelectorComponent,
   ],
   imports: [
-    CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule, RouterModule
+    CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}), TextMaskModule, CoreModule, RouterModule
   ]
 })
 export class AdminModule { }

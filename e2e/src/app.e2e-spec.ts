@@ -8,12 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  // Disparando o erro 'environment.prod.ts is part of the TypeScript compilation but it's unused.\nAdd only entry points to the 'files' or 'include' properties in your tsconfig'
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('BlindBeez');
+    expect(page.getTitleText()).toEqual('Welcome to scheduler-blind-beez!');
   });
-  
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

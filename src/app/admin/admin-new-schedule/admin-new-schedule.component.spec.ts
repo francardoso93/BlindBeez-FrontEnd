@@ -18,7 +18,7 @@ describe('AdminNewScheduleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppRoutingModule, CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule, TextMaskModule, CoreModule, RouterModule
+        AppRoutingModule, CommonModule, SchedulerModule, FormsModule, ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}), TextMaskModule, CoreModule, RouterModule
       ],
       declarations: [
         AdminScheduleViewerComponent,
