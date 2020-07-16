@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'admin/agenda', component: AdminScheduleViewerComponent},
   { path: 'admin/agenda/novo', component: AdminNewScheduleComponent},
   { path: 'admin/agenda/novo/resposta', component: SubmitResultComponent},
+  { path: 'admin/empresas/', component: AdminNewCompanyComponent},
   { path: 'admin/empresas/novo', component: AdminNewCompanyComponent},
   { path: 'admin/empresas/novo/resposta', component: SubmitResultComponent},
 

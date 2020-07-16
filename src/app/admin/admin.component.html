@@ -1,6 +1,31 @@
-<p>
-  Painel do administrador!
-  Aqui vai existir o "menu" para as opções de administrador, como cadastros de novas agendas.
-  Cadastro de companhias.
-  Futuramente novas opções.
-</p>
+<div>
+  <section class="padding_t_40 padding_b_50">
+    <article class="container" aria-label="Painel do administrador">
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <h2 class="title_page">Painel do administrador</h2>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <button class="btn btn_blue large" [routerLink]="['/admin/agenda']">
+            Controle de agenda
+          </button>
+        </div>
+      </div>
+      <br />
+      <div class="row">
+        <div class="col-md-6 col-xs-12">
+          <button
+            class="btn btn_blue large"
+            [routerLink]="['/admin/empresas/novo']"
+          >
+            Nova Empresa
+          </button>
+        </div>
+      </div>
+      <br>
+    </article>
+  </section>
+</div>
