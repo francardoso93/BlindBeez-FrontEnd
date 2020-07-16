@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../header/header.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,8 +7,7 @@ import { HeaderService } from '../header/header.service';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private readonly headerService: HeaderService) {
-    this.headerService.setHeaderButtonsVisibility(false);
+  constructor() {
    }
 
   ngOnInit() {

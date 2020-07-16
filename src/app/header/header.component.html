@@ -7,7 +7,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <div class="navbar-brand">
-          <button *ngIf="buttonsVisible" [routerLink]="['./']" title="Logotipo da blindbeez" aria-label="Acessar homepage da BlindBeez"
+          <button *ngIf="!router.url.includes('admin')" [routerLink]="['./']" title="Logotipo da blindbeez" aria-label="Acessar homepage da BlindBeez"
             class="nav-link btn logo_main" tabindex="0">
             <img src="./assets/img/logo-blind-small-removebg.png"
               alt='Logotipo de escudo hexagonal com tipografia estilizada escrito "Blind Beez"' class="img-responsive"
@@ -16,7 +16,7 @@
         </div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item">
-            <button *ngIf="buttonsVisible" [routerLink]="['./agendamento']" class="nav-link btn item">
+            <button *ngIf="!router.url.includes('admin')" [routerLink]="['./agendamento']" class="nav-link btn item">
               AGENDAR HORÁRIO
             </button>
           </li>
