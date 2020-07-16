@@ -363,9 +363,12 @@
                 É obrigatório informar o Tempo de cada sessão.
               </div>
             </label>
-          </div>
-
+          </div>         
           <div class="form-group">
+            <button type="button" class="btn btn-secondary" [routerLink]="['/admin/agenda']">
+              Cancelar
+            </button>
+            &nbsp;
             <button
               type="submit"
               class="btn btn_blue medium"
@@ -385,5 +388,5 @@
 <app-alert
   title="Atenção!"
   description="Cuidado com essa operação! Já existem agendas para o periodo selecionado. Se prosseguir, todas as agendas existentes nesse período serão substituidas pelas novas. Uma opção mais segura é a de excluir manualmente as agendas antes de efetuar esse cadastro. Tem certeza que deseja continuar?"
-  (confirmationPressed)=sendToBackend(_newSchedules)
-  ></app-alert>
+  (confirmationPressed)="sendToBackend(_newSchedules)"
+></app-alert>
