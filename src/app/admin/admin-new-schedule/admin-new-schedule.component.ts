@@ -144,6 +144,10 @@ export class AdminNewScheduleComponent implements OnInit {
             "Agendas criadas com sucesso!",
             "Essas sessões já estão disponíveis para reserva!"
           );
+          this.submitResultService.setResultOkButton(
+            "Retornar para agenda",
+            "/admin/agenda"
+          );
           this._newSchedules = null;
           this.router.navigate(["/admin/agenda/novo/resposta"]);
         },
