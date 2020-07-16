@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class SubmitResultComponent implements OnInit {
   header: string = 'Ops! Página incorreta';
   body: string = 'Não temos resultado de nenhuma operação solicitada para mostrar aqui';
+  buttonLabel;
+  buttonLink;
 
   constructor(
     private router: Router,
@@ -17,6 +19,8 @@ export class SubmitResultComponent implements OnInit {
   ) {
     this.header = submitResultService.getHeader();
     this.body = submitResultService.getBody();
+    this.buttonLabel = submitResultService.getButtonLabel();
+    this.buttonLink = submitResultService.getButtonLink();
   }
 
   ngOnInit() {
